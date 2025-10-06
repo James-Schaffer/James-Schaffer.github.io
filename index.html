@@ -1,14 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Schaffer _ Test</title>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=JetBrains Mono'>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>James Schaffer</title>
+	<link rel="stylesheet" href="/css/mainStyles.css">
+	<link rel="stylesheet" href="/css/showcases.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=JetBrains Mono'>
+	<script src="/js/mainScript.js"></script>
+	<script src="/js/mediaGroup.js"></script>
 </head>
 <body>
-    <h1>Hi</h1>
+	<div class="mainContainer">
+		<header class="main-header">
+			<div class="top">
+				<h1>James Schaffer</h1>
+				<p>||</p>
+				<p>Aspiring game developer | Student | 2023 BAFTA YGD Finalist</p>
+				<div class="themeToggle" id="themeToggle">
+					<img src="/media/general/icons/sun.png" alt="Sun" class="icon sun">
+					<img src="/media/general/icons/moon.png" alt="Moon" class="icon moon">
+				<div class="mask_line"></div>
+			</div>
+			</div>
+			<div class="page-split"></div>
+			<div class="navbarContainer" data-nav-mapping="default" data-nav-selected="Portfolio,Games,Escape the Darkness">
+			</div>
+		</header>
+		<main>
+			<div class="banner" style="margin-bottom: 0.2cm;"><img src="/media/games/etd/etdGameBanner.png"/></div>
 
-    <a href="./other.html">To other</a>
+			<div class="tagLine"><div class="tagScroller">
+				<div class="tag"><img src="/media/general/logos/unity.png"/><p>Unity</p></div>
+				<div class="tag"><img src="/media/general/logos/csharp.png"/><p>C#</p></div>
+				<div class="tag"><img src="/media/general/logos/aseprite.png"/><p>Aseprite</p></div>
+			
+				<div class="tag"><img src="/media/general/logos/unity.png"/><p>Unity</p></div>
+				<div class="tag"><img src="/media/general/logos/csharp.png"/><p>C#</p></div>
+				<div class="tag"><img src="/media/general/logos/aseprite.png"/><p>Aseprite</p></div>
+			</div></div>
+
+			<div class="showcase_1">
+				<p class="showcase_glance">Escape The Darkness (2023)<br/>BAFTA YGD 2023 Finalist : 15-18 Catagory<br/>As seen here : <a href="https://www.bafta.org/stories/2023-young-game-designers-game-making-finalists/">www.bafta.org/stories/2023-young-game-designers-game-making-finalists</a>
+				<br/><br/>Escape the Darkness is a short 2D puzzle survival game in which you solve puzzles with your torch whilst fending off the darkness and trying to escape the damaged research facility. I made this game with a friend between Christmas and march and went on to become a finalist for the BAFTA YGD 2023 game making award.<br/>I co-designed and developed the game, working as a programmer and whilst making all the art, (most of the) sound and music. I worked on several core systems such as the darkness, torch and laser mechanics.</p>
+
+				<div class="showcase_mediagroup">
+					<div class="showcase_image noHover" onclick="viewImageBig(this)">
+						<div><iframe src="https://youtube.com/embed/38M7rnqldSI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/etd/etdGameSplashImage.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/etd/etdGameSS01.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/etd/etdGameSS02.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/etd/etdGameSS03.png"></img></div>
+					</div>
+
+					<a class="prev" onclick="changeSlide(-1)">❮</a>
+					<a class="next" onclick="changeSlide(1)">❯</a>
+
+					<div class="slideRow" data-selected=0>
+						<div onclick="setSlide(0)"><img class="slideRow_img" src="/media/games/replay/replayGameGIF.gif"></img></div>
+						<div onclick="setSlide(1)"><img class="slideRow_img" src="/media/games/etd/etdGameSplashImage.png"></img></div>
+						<div onclick="setSlide(2)"><img class="slideRow_img" src="/media/games/etd/etdGameSS01.png"></img></div>
+						<div onclick="setSlide(3)"><img class="slideRow_img" src="/media/games/etd/etdGameSS02.png"></img></div>
+						<div onclick="setSlide(4)"><img class="slideRow_img" src="/media/games/etd/etdGameSS03.png"></img></div>
+					</div>
+				</div>
+
+				<div class="showcase_text">
+					<h2>Concept</h2>
+					<p>The game was designed off of the initial ideas of a puzzle game which uses shadows as a mechanic, this ended up with the darkness being a core element of the game and exploration, puzzle solving and survival as the core game mechanics.<br/>You play as a security guard in a damaged facility, the darkness is an experiment gone wrong, it has escaped containment and is taking over the facility. You must escape the facility by solving puzzles, exploring and keeping your torch alive.<br/>Whilst we designed some narrative, it was not as prevalent as originally indented, this was in part due to lack of time but also our technical ability at the time.</p>
+					<br/>
+
+					<h2>Mechanics</h2>
+					<div class="list">
+						<p>The darkness : </p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>The primary danger and mechanic of the game, if it touches the player its game over.</li>
+							<li>The darkness obscures part of the levels and interacts with other elements in the levels such as the lasers.</li>
+							<li>The darkness can be temporarily held back using the torch, this interaction keeps the player alive and allows them to solve puzzles.</li>
+							<li>The darkness visuals uses a partial system of translucent randomly sized squares, this interacts with the lighting systems' FoV mask to fade out tiles which are in the light.</li>
+							<li>Whilst the partial system-FoV mask interactions used a compute shader the large number of particles, especially offscreen/in walls meant a lot of wasted computation and computational expense for this system.</li>
+							<li>In hindsight, a point-cloud and marching cubes approach or a mask system would have worked better.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>Torch & lighting system : </p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Light sources keep the darkness away, allowing for safety for the player and vision.</li>
+							<li>The torch has a limited lifespan, only being kept alive by batteries found throughout the level.</li>
+							<li>Whilst not present in the game, other light sources such as fires and hall lights were part of an extended game design, allowing for safe zones later into the game.</li>
+							<li>The torch uses real time FoV visualization to create a mask determining what areas are illuminated, with this it uses a lighting system for the visuals.</li>
+							<li>The FoV mask was based off of Sebastian Lague's system as shown in this video: <a href="https://www.youtube.com/watch?v=rQG9aUWarwE">www.youtube.com/watch?v=rQG9aUWarwE</a></li>
+							<li>This system took a lot of refinement to optimise accuracy and speed as it was real time but still needed to be accurate for interactions with puzzles such as the laser.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>Laser puzzle system : </p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Laser have an emitter and receiver, when a receiver is powered something happens, e.g. opening a door.</li>
+							<li>Laser can only pass through lit areas and can only be redirected with mirrors. This means the player must align mirrors and torch beans to let the laser reach a receiver.</li>
+							<li>Laser use recursive recasting systems in conjunction with Unity's Sprite Shape system.</li>
+							<li>This prototype mechanic had limited effectiveness in the build due to the complexity of the algorithms and time constraints as well as my own technical ability at the time.</li>
+						</ul>
+					</div>
+
+					<h2>Design philosophy</h2>
+					<div class="list">
+						<p>The game is designed to be intuitive and easy to learn, here are some examples of how I have designed to be so : </p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>There is clues and puzzles hidden throughout the levels which further promotes exploration in the game along with the torch battery and limited vision. This is important as it means they find more batteries and puzzles without becoming lost/stuck and frustrated.</li>
+							<li>The addition of a small highlight when near interactable items means the player doesn't miss things and get confused as well as better understanding what they are doing at any time (highlighting what they will interact with will mean they don't press the interact button and not know what it did).</li>
+							<li>Levels/rooms are layer out in a way which is meant to mimic real life making them easier to understand for the player.</li>
+							<li>The laser puzzle is designed in a way which means when the player goes through the door for the first time the torch lines up so that the first part of the puzzle is complete allowing them to understand what they are meant to do. (Note in practice this doesn't work well due to the system not fully working).</li>
+						</ul>
+					</div>
+
+					<h2>Difficulties and Reflection</h2>
+					<p>The main difficulties when developing the game was the FoV mask and laser system, both systems I developed.<br>The FoV mask worked well at first but I had to refine it multiple times to optimise accuracy and speed. It then had and issue of not updating correctly as if it was adding a random rotation to the mask, through some troubleshooting i realised it was an order of execution issue and had to redesign how some of the system worked to make sure it all ran in the correct order.</p>
+					<div class="list">
+						<p>The particle system looked ok visually but was hard to control and had multiple visual bugs. A different method would have been better : </p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Point cloud and marching cube approach would work by checking if each point in a cloud was inside the FoV mask and using marching cubes with some randomization to create a darkness visual with less computational expense.</li>
+							<li>Mask system would have used the FoV mask itself as a mask for rendering the game onto a black/animated background then using a partial system along the edge.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>From this project I learnt to :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>More effectively collaborate on a project under time constraints.</li>
+							<li>Understand multiple complex algorythms and how to adapt/re-write them for my use cases.</li>
+							<li>More effective git & Github collaboration.</li>
+						</ul>
+					</div>
+
+					<h2>Links:</h2>
+					<div class="list">
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Itch.io / game download : <a href="https://jamesschaffer.itch.io/escape-the-darkness">jamesschaffer.itch.io/escape-the-darkness</a></li>
+							<li>Bafta nomination : <a href="https://www.bafta.org/stories/2023-young-game-designers-game-making-finalists/">www.bafta.org/stories/2023-young-game-designers-game-making-finalists/</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</main>
+	</div>
 </body>
 </html>
