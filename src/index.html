@@ -1,1 +1,41 @@
-<p>Hi_2_3</p>
+<p>Hi_4</p>
+
+<p>
+	name: Deploy live site
+
+on:
+  push:
+    branches:
+      - live  # only runs when you push or merge into live
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout live branch
+        uses: actions/checkout@v4
+        with:
+          ref: live
+          path: live_branch
+
+      - name: Checkout dev branch (to get src/)
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          path: dev_branch
+
+      - name: Prepare deployment folder
+        run: |
+          rm -rf *  # clear current branch contents
+          cp -r dev_branch/src/* ./
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy src from dev"
+          git push
+
+</p>
