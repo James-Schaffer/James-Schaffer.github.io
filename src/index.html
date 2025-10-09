@@ -1,7 +1,7 @@
-<p>Hi_4</p>
+<p>Hi_5</p>
 
 <p>
-	name: Deploy live site
+name: Deploy live site
 
 on:
   push:
@@ -27,8 +27,16 @@ jobs:
 
       - name: Prepare deployment folder
         run: |
-          rm -rf *  # clear current branch contents
-          cp -r dev_branch/src/* ./
+          cd live_branch
+          echo "Contents of dev_branch:"
+          ls -R
+          if [ -d "../dev_branch/src" ]; then
+            rm -rf ./*  # Clear old site files
+            cp -r ../dev_branch/src/* ./
+          else
+            echo "ERROR: ../dev_branch/src/ not found!"
+            exit 1
+          fi
 
       - name: Commit and push changes
         run: |
@@ -37,5 +45,4 @@ jobs:
           git add .
           git commit -m "Deploy src from dev"
           git push
-
 </p>
