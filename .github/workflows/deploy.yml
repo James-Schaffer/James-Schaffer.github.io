@@ -3,7 +3,7 @@ name: Deploy live site
 on:
   push:
     branches:
-      - main  # only runs when you push or merge into main
+      - live  # only runs when you push or merge into main
 
 jobs:
   deploy:
