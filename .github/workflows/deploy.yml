@@ -25,14 +25,10 @@ jobs:
       - name: Prepare deployment folder
         run: |
           ls -R
-          ls dev_branch -R
-
-          ls live -R
-          ls dev -R
+          ls / -R
 
           cd live_branch
-          echo "Contents of dev_branch:"
-          ls -R
+
           if [ -d "../dev_branch/src" ]; then
             rm -rf ./*  # Clear old site files
             cp -r ../dev_branch/src/* ./
@@ -42,10 +38,7 @@ jobs:
           fi
 
           ls -R
-          ls dev_branch -R
-
-          ls live -R
-          ls dev -R
+          ls / -R
 
           cd live_branch
 
