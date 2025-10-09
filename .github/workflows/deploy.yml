@@ -24,8 +24,10 @@ jobs:
 
       - name: Prepare deployment folder
         run: |
-          ls -R
-          ls / -R
+          ls .. -R
+          echo "############################"
+          ls ../..
+          echo "############################"
 
           cd live_branch
 
@@ -38,7 +40,6 @@ jobs:
           fi
 
           ls -R
-          ls / -R
 
           cd live_branch
 
