@@ -1,4 +1,4 @@
-<p>Hi_5</p>
+<p>Hi_6</p>
 
 <p>
 name: Deploy live site
@@ -27,6 +27,12 @@ jobs:
 
       - name: Prepare deployment folder
         run: |
+          ls -R
+          ls dev_branch -R
+
+          ls live -R
+          ls dev -R
+
           cd live_branch
           echo "Contents of dev_branch:"
           ls -R
@@ -38,6 +44,14 @@ jobs:
             exit 1
           fi
 
+          ls -R
+          ls dev_branch -R
+
+          ls live -R
+          ls dev -R
+
+          cd live_branch
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
@@ -45,4 +59,5 @@ jobs:
           git add .
           git commit -m "Deploy src from dev"
           git push
+
 </p>
