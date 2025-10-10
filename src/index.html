@@ -1,0 +1,61 @@
+<p>
+name: Deploy live site
+
+on:
+  push:
+    branches:
+      - live  # only runs when you push or merge into live
+
+permissions:
+  contents: write
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout live branch
+        uses: actions/checkout@v4
+        with:
+          ref: live
+          path: live_branch
+
+      - name: Checkout dev branch (to get src/)
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          path: dev_branch
+
+      - name: Prepare deployment folder
+        run: |
+          ls ../.. -R
+          echo "############################"
+
+          cd live_branch
+
+          if [ -d "../dev_branch/src" ]; then
+            rm -rf ./*  # Clear old site files
+            cp -r ../dev_branch/src/* ./
+          else
+            echo "ERROR: ../dev_branch/src/ not found!"
+            exit 1
+          fi
+
+          ls ../.. -R
+
+      - name: Commit and push changes
+        working-directory: live_branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Deploy src from dev"
+          git push
+
+</p>
