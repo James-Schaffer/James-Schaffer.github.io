@@ -1,9 +1,7 @@
 name: Deploy live site
 
 on:
-  push:
-    branches:
-      - live  # only runs when you push or merge into live
+  workflow_dispatch: # Runs manually from actions tab
 
 permissions:
   contents: write
