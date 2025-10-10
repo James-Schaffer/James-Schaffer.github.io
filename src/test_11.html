@@ -6,6 +6,9 @@ on:
     branches:
       - live  # only runs when you push or merge into live
 
+permissions:
+  contents: write
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
