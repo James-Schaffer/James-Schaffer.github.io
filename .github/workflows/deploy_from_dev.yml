@@ -1,4 +1,4 @@
-name: Deploy live site
+name: Deploy site from dev
 
 on:
   workflow_dispatch: # Runs manually from actions tab
