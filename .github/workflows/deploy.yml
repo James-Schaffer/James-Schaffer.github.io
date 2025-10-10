@@ -39,9 +39,7 @@ jobs:
             exit 1
           fi
 
-          ls -R
-
-          cd live_branch
+          ls ../.. -R
 
       - name: Commit and push changes
         run: |
