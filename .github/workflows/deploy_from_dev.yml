@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
+  pull_from_dev:
     runs-on: ubuntu-latest
 
     steps:
@@ -54,3 +54,6 @@ jobs:
 
           git commit -m "Deploy src from dev"
           git push
+  deploy:
+    needs: pull_from_dev
+    uses: ./.github/workflows/deploy.yaml
