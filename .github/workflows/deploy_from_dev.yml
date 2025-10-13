@@ -42,6 +42,11 @@ jobs:
 
           ls ../.. -R
 
+      - name: Fetch dev branch
+        run: |
+          git fetch origin dev:dev
+          git branch -a
+
       - name: Commit and push changes
         working-directory: live_branch
         run: |
