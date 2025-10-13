@@ -56,4 +56,4 @@ jobs:
           git push
   deploy:
     needs: pull_from_dev
-    uses: /.github/workflows/static_deploy.yaml@1
+    uses: ./.github/workflows/static_deploy.yml
