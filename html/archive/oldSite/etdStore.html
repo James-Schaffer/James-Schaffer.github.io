@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="HTML, CSS" />
+    
+        <meta name="description" content="Escape The Darkness is a free to play puzzle game. You play as mike, a security guard stuck in a facility and have to escape before you are consumed by the darknes." />
+        <title>James Schaffer</title>
+        <link rel="icon" href="images/games/websiteIcon.png">
+        
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js"></script>
+    </head>
+
+    <body class="col4">
+        <div class="header">
+            <div class="headerBar col2" id="section-pageTop">
+                <div class="headerBarBuffer"></div>
+                    <h1 class="colText1" id="pageHeader" type="button" onclick="location.href='https://jamesschaffer.dev/archive/oldSite/oldIndex.html'">
+                        James Schaffer
+                    </h1>
+                    <div class="headerBarBuffer">
+                        <img type="button" class="headerBarHamburger" src="images/general/hamburgerNavIcon.png" onclick="websiteNavBarDropDown()"></image>
+                    </div>
+                </div>
+                <div class="websiteNavBar col1 colText1" id="websiteNavBarID">
+                    <div class="navBox col3" type="button" onclick="location.href='/html/archive/oldSite/blomboStore.html'"><p>BLOMBO</p></div>
+                    <div class="navBox col3" type="button" onclick="location.href='/html/archive/oldSite/etdStore.html'"><p>ESCAPE THE DARKNESS</p></div>
+                    <div class="navBox col3" type="button" onclick="location.href='/html/archive/oldSite/replayStore.html'"><p>REPLAY</p></div>
+                    <!--<div class="navBox col3" type="button" onclick="location.href='randomArt.html'"><p>RANDOM ART</p></div>-->
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/aboutMe.html'"><p>ABOUT ME</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="content conGameStore">
+            <div class="gameStoreBanner" id="gSBanner">
+                <img src="images/games/eTD/etdGameBanner.png" alt="game thumbnails, link to game downloads"></image>
+                <!--<div class="content"><h2 class="colText1">ESCAPE THE DARKNESS</h2></div>-->
+            </div>
+            
+            <br/>
+
+            <div class="gSGrid" id="gSGridID">
+                <div class="gSGridGlance">
+                    <p class="colText1">ESCAPE THE DARKNESS - A 2D PUZZLE GAME<br/><br/>Use light to hold back the darkness and escape the facility as Mike the security guard in this breathless 2d puzzle game<br/><br/>Nominated for the BAFTA YGD 15-18 award in 2023. As seen here : <a href="https://ygd.bafta.org/competition/competition-news/2023/escape-the-darkness" class="colText3">www.bafta.org</a></p>
+                </div>
+                <div class="gSGridTrailer">
+                    <iframe src="https://youtube.com/embed/38M7rnqldSI"></iframe>
+                </div>
+                <div class="gSGridSSShowcase" id="gSScreenShots">
+                    <div class="gSScreenshotList colText1">
+                        <div class="gSScreenshotContainer"><img src="images/games/eTD/etdGameSplashImage.png"/></div>
+                        <div class="gSScreenshotContainer"><img src="images/games/eTD/etdGameSS01.png"/></div>
+                        <div class="gSScreenshotContainer"><img src="images/games/eTD/etdGameSS02.png"/></div>
+                        <div class="gSScreenshotContainer"><img src="images/games/eTD/etdGameSS03.png"/></div>
+                        
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <div class="row">
+                            <div class="column">
+                                <img class="demo" src="images/games/eTD/etdGameSplashImage.png" onclick="currentSlide(1)">
+                            </div>
+                            <div class="column">
+                                <img class="demo" src="images/games/eTD/etdGameSS01.png" onclick="currentSlide(2)">
+                            </div>
+                            <div class="column">
+                                <img class="demo" src="images/games/eTD/etdGameSS02.png" onclick="currentSlide(3)">
+                            </div>
+                            <div class="column">
+                                <img class="demo" src="images/games/eTD/etdGameSS03.png" onclick="currentSlide(4)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gSGridDownloads">
+                    <div class="gSPurchaseOptions">
+                        <p>GET NOW FOR FREE</p>
+                        <div class="gSOption"><p class="colText1">Download from: <a class="colText3" href="https://ghostanda.itch.io/escape-the-darkness">Itch.io</a></p></div>
+                        <div class="gSOption"><p class="colText1">Download from: <a class="colText3" href="https://ygd.bafta.org/competition/competition-news/2023/escape-the-darkness">Bafta.org</a></p></div>
+                    </div>
+                </div>
+                <div class="gSGridAbout">
+                    <p class="colText1">About This Game<br/><br/>You play as a security guard in a facility. The darkness has escaped, a living shadow which envelops all life it touches, each time growing stronger. It behaves much like a shadow and is 'scared' of light, shrinking away when exposed to large amounts. The darkness has damaged parts of the facility and you have to navigate through the facility using your flashlight to solve puzzles repairing the facility and making your way out of the facility. You have to use your torch to open up paths for lasers which solve puzzles, they are another experiment gone wrong when the darkness escaped. You have to search the level for clues for door codes, find out what is happening and keep yourself alive with batteries scattered around the facility. You want to escape to survive and care little for the faceless overseer that controls the facility.<br/><br/>I worked on making all of the art, sfx and music as well as lots of the programming. I wrote the data and game managing scripts which hold the game together and in the future will allow for easy addition of a progression system with levels as well as allowing for the pause and setting system I built. I also spent a lot of time working on the gimmick of the game, the darkness system and how it interacts with puzzles, this was very interesting to do. I used a polygon generated each frame with a particle system to achieve the visuals and used the same polygon to interact with the environment such as the lasers. The lasers were one of the biggest challenges, effectively repeatedly stepping forward checking if it went through something and then adjusting its path until it hit darkness, a solid wall or a receiver. This was difficult to do due to the nature of the constantly changing complex polygon but was interesting to implement. Another part I had a major part in designing and building the level, trying to build the backstory and mood into the game.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="bottomPageBuffer"></div>
+            <div class="footerBar col2">
+                <p class="footerButton colText1" type="button" onclick="location.href='#section-pageTop'">To Top</p>
+                <p class="footerButton colText1" type="button" onclick="location.href='/archive/oldSite/index.html'">Home</p>
+            </div>
+        </div>
+    </body>
+</html>

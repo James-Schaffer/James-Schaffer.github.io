@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>James Schaffer</title>
+	<link rel="stylesheet" href="/css/mainStyles.css">
+	<link rel="stylesheet" href="/css/showcases.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=JetBrains Mono'>
+	<script src="/js/mainScript.js"></script>
+	<script src="/js/console.js"></script>
+</head>
+<body><div class="mainContainer">
+	<header class="main-header">
+		<div class="top">
+			<h1>James Schaffer</h1>
+			<p>||</p>
+			<p>Aspiring game developer | Student | 2023 BAFTA YGD Finalist</p>
+			<div class="themeToggle" id="themeToggle">
+				<img src="/media/general/icons/sun.png" alt="Sun" class="icon sun">
+				<img src="/media/general/icons/moon.png" alt="Moon" class="icon moon">
+				<div class="mask_line"></div>
+			</div>
+		</div>
+		<div class="page-split"></div>
+		<div class="navbarContainer" data-nav-mapping="default" data-nav-selected="Home">
+		</div>
+	</header>
+	<main>
+		<h2 style="margin-bottom: 0.3cm;">Hello! Welcome to my website</h2>
+		<p>I'm <b>James Schaffer</b>, a student at the University of Leicester studying Computer Science and an aspiring game developer. I grew up playing games and now its my mission to make them. I am self taught in game development, for over <span id="gameDevYears"></span> years I have been learning to use the Unity and Godot game engines as well as supporting tools and software. In this time I have participated in 2 game jams and been nominated for the 2023 BAFTA young game maker award.</p>
+		
+		<div class="list">
+			<p>Interests/Hobbies : </p>
+			<div style="height: 0.2cm;"></div>
+			<ul>
+				<li>Gaming</li>
+				<li>Game development - see <a href="/html/portfolio/games.html">here</a> for some of my work</li>
+				<li>Gym</li>
+				<li>Art - see <a href="/html/portfolio/art.html">here</a> for some of my work</li>
+			</ul>
+		</div>
+
+		<h3 style="margin-bottom: 0.3cm;">Contents : </h3>
+
+		<div class="showcase_2">
+			<div class="showcase_tileGroup">
+				<div class="showcase_tile" onclick="location.href='/html/portfolio/games.html'">
+					<img src="/media/games/gameCollageSplash.png"></img>
+					<h3>Games</h3>
+					<p>See all my games!</p>
+				</div>
+			</div>
+			<div class="showcase_tileGroup">
+				<div class="showcase_tile" onclick="location.href='/html/portfolio/programming.html'">
+					<img src="/media/projects/infinityGrid/Figure_1.png"></img>
+					<h3>Programming projects</h3>
+					<p>Beep boop</p>
+				</div>
+			</div>
+			<div class="showcase_tileGroup">
+				<div class="showcase_tile" onclick="location.href='/html/portfolio/art.html'">
+					<img src="/media/games/replay/replayGameSplashImage.png"></img>
+					<h3>Art</h3>
+					<p>Art stufft</p>
+				</div>
+			</div>
+			<div class="showcase_tileGroup">
+				<div class="showcase_tile" onclick="location.href='/html/contact.html'">
+					<img src="/media/general/jamesSchafferFace.jpeg"></img>
+					<h3>Contact Me</h3>
+					<p>Get in touch or see my links.</p>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
+<script>
+	const startDate = new Date("2020-10-19");
+	const today = new Date();
+
+	let years = today.getFullYear() - startDate.getFullYear();
+
+	const hasHadAnniversary = (
+		today.getMonth() > startDate.getMonth() ||
+		(today.getMonth() === startDate.getMonth() && today.getDate() >= startDate.getDate())
+	);
+
+	if (!hasHadAnniversary) {
+		years--;
+	}
+
+	document.getElementById("gameDevYears").textContent = years;
+</script>
+</body>
+</html>

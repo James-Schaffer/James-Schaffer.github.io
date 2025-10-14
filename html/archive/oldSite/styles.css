@@ -1,0 +1,488 @@
+html {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 40px;
+  font-size: 300%;
+  font-weight: bold;
+}
+
+h3 {
+  color: #000000;
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  font-size: 180%;
+}
+
+
+.colText1 {
+  color: #ffffff;
+}
+
+.colText2 {
+  color: #000000;
+}
+
+.colText3 {
+  color: #bf7618;
+}
+
+.col0 {
+  background-color: #ffffff;
+}
+
+.col1 {
+  background-color: #858585;
+}
+
+.col2 {
+  background-color: #535353;
+  /*background-color: #575757;*/
+}
+
+.col3 {
+  background-color: #434343;
+  /*background-color: #8d8d8d;*/
+}
+
+.col4 {
+  background-color: #000000;
+}
+
+/*header and navbar =======================================================*/
+
+.headerBar {
+  display: flex;
+  padding: 1px;
+  align-content: center;
+  height: 70px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 350%;
+  font-weight: bold;
+  cursor: pointer;
+  margin: auto;
+  transition: 0.15s;
+}
+
+.headerBarBuffer {
+  width: 10%;
+  align-items: center;
+}
+
+.headerBarHamburger {
+  height: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  cursor: pointer;
+  float: right;
+}
+
+.websiteNavBar {
+  height: 0px;
+  position: relative;
+  
+  transition: 0.15s;
+  /*transition-property: height;*/
+
+  align-items: center;
+
+  text-align: center;
+  visibility: hidden;
+}
+
+.navBox {
+  display: inline-block;
+  position: relative;
+  height: 70%;
+  top: 15%;
+  margin-left: 2px;
+  margin-right: 2px;
+  border-radius: 5px;
+  padding: 5px;
+  padding-top: 13px;
+
+  text-align: center;
+  vertical-align: middle;
+
+  cursor: pointer;
+}
+.navBox > p {
+  font-size: 1rem;
+}
+
+/*main content==================================================*/
+
+.content {
+  margin: 10px 10px 0 10px;
+}
+
+.conGameStore {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*home pannels========================================================*/
+
+.homePannelHolder {
+  flex: auto;
+  display: inline-grid;
+  gap: 10px;
+}
+
+.homePannel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  aspect-ratio: 1/1;
+}
+
+.homePannel > img,
+.homePannel > .content {
+  transition: 0.15s;
+}
+
+
+.homePannel img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1/1;
+}
+
+.homePannel:hover > img.zoom {
+   filter: blur(2px);
+   transform: scale(1.1);
+   transition: 0.15s;
+}
+
+.homePannel:hover > img.slideshow {
+  object-position: right;
+  transition: 15s;
+  transition-timing-function: linear;
+}
+
+.homePannel > .content {
+  position: absolute;
+  inset: 0;
+  /*padding: 1rem;*/
+  margin: 0px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.homePannel > .content > p {
+  font-size: 8vw;
+}
+
+.homePannel:hover > .content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.grid1{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 1;
+}
+
+.grid1,
+.grid1 img,
+.grid1 > .content {
+  aspect-ratio: 16/9;
+}
+
+.grid2{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 2;
+}
+
+.grid2,
+.grid2 img,
+.grid2 > .content {
+  aspect-ratio: 16/9;
+}
+
+.grid3{
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.grid4{
+  grid-column: 2;
+  grid-row: 2;
+}
+
+
+/*Game banners===============================================================*/
+
+.gameStoreBanner {
+  position: relative;
+  overflow: hidden;
+}
+
+.gameStoreBanner > img{
+  width: 100%;
+  height: 200px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+  transition: 0.35s;
+}
+
+.gameStoreBanner > .content {
+  position: absolute;
+  inset: 0;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.gameStoreBanner > .content > h2 {
+  font-size: 6vw;
+  font-weight: normal;
+  margin: 0;
+}
+
+/*Game store bits===============================================================*/
+
+.gSGrid {
+  flex: auto;
+  width: 100%;
+  display: inline-grid;
+  /*gap: 2%;*/
+  column-gap: 2%;
+  row-gap: 10px;
+  grid-template-rows: auto auto auto auto auto;
+  padding-right: 2%;
+  padding-left: 2%;
+  grid-template-columns: 59% 39%;
+  grid-template-areas:  "g t" 
+                        "d s"
+                        "a s";
+}
+
+.gSGrid > .gSGridGlance {
+  grid-area: g;
+}
+
+.gSGrid > .gSGridTrailer {
+  grid-area: t;
+}
+.gSGrid > .gSGridTrailer > iframe {
+  aspect-ratio: 16/9;
+  width: 100%;
+  grid-area: 1 / 2;
+  border: 1px solid rgb(34, 34, 34);
+}
+.gSGrid > .gSGridTrailer > img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+  border: 1px solid rgb(34, 34, 34);
+}
+
+.gSGrid > .gSGridSSShowcase {
+  grid-area: s;
+}
+.gSGrid > .gSGridSSSlideshow {
+  grid-area: s;
+}
+
+.gSGrid > .gSGridDownloads {
+  grid-area: d;
+}
+
+.gSGrid > .gSGridAbout {
+  grid-area: a;
+}
+
+
+.gSPurchaseOptions {
+  width: 100%;
+  padding: 5px;
+  background-color: rgb(66, 66, 66);
+}
+.gSPurchaseOptions > p{
+  color: white;
+  font-weight: bold;
+  border: 5px solid rgb(66, 66, 66);
+}
+.gSOption {
+  width: 100%;
+  height: 50px;
+  border: 5px solid rgb(66, 66, 66);
+  border-radius: 10px;
+  box-sizing: 10px;
+  background-color: #605a56;
+}
+.gSOption > p{
+  position: relative;
+  top: 25%;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+.gSGridSSShowcase > .gSScreenshotList {
+  display: inline-block;
+}
+.gSGridSSShowcase > .gSScreenshotList > .gSScreenshotContainer {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+.gSGridSSShowcase > .gSScreenshotList > .gSScreenshotContainer > img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+  border: 1px solid rgb(34, 34, 34);
+}
+.gSGridSSShowcase > .gSScreenshotList > .prev,
+.gSGridSSShowcase > .gSScreenshotList > .next {
+  display: none;
+}
+.gSGridSSShowcase > .gSScreenshotList > .row {
+  display: none;
+}
+
+.gSGridSSSlideshow > .gSScreenshotList {
+  display: inline-block;
+  position: relative;
+}
+.gSGridSSSlideshow > .gSScreenshotList > .gSScreenshotContainer > img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
+  display: none;
+  border: 1px solid rgb(34, 34, 34);
+}
+.gSGridSSSlideshow > .gSScreenshotList > .prev,
+.gSGridSSSlideshow > .gSScreenshotList > .next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.gSGridSSSlideshow > .gSScreenshotList > .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.gSGridSSSlideshow > .gSScreenshotList > .prev:hover,
+.gSGridSSSlideshow > .gSScreenshotList > .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.gSGridSSSlideshow > .gSScreenshotList > .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.gSGridSSSlideshow > .gSScreenshotList > .row > .column {
+  float: left;
+  width: 25%;
+}
+.gSGridSSSlideshow > .gSScreenshotList > .row > .column > .demo {
+  opacity: 0.6;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 1px solid rgb(34, 34, 34);
+}
+.gSGridSSSlideshow > .gSScreenshotList > .row > .column > .active,
+.gSGridSSSlideshow > .gSScreenshotList > .row > .column >.demo:hover {
+  opacity: 1;
+  border: 2px solid rgb(106, 106, 106);
+}
+
+
+
+
+
+/*Footer css, top of page ======================================================*/
+.footer {
+  width: 100%;
+  margin-top: auto;
+}
+
+.footerBar {
+  height: 70px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerBar .footerButton {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footerBar .footerButton:hover {
+  background-color: #000000;
+}
+
+.bottomPageBuffer {
+  height: 10px;
+  width: 100%;
+}
+
+/*other stuff=================================================*/
+.linkTo {
+  cursor: pointer;
+  text-decoration-line: underline;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="HTML, CSS" />
+    
+        <meta name="description" content="Escape The Darkness is a free to play puzzle game. You play as mike, a security guard stuck in a facility and have to escape before you are consumed by the darknes." />
+        <title>James Schaffer</title>
+        <link rel="icon" href="images/games/websiteIcon.png">
+        
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js"></script>
+    </head>
+
+    <body class="col0">
+        <div class="header">
+            <div class="headerBar col2" id="section-pageTop">
+                <div class="headerBarBuffer"></div>
+                    <h1 class="colText1" id="pageHeader" type="button" onclick="location.href='https://jamesschaffer.dev/archive/oldSite/oldIndex.html'">
+                        James Schaffer
+                    </h1>
+                    <div class="headerBarBuffer">
+                        <img type="button" class="headerBarHamburger" src="images/general/hamburgerNavIcon.png" onclick="websiteNavBarDropDown()"></image>
+                    </div>
+                </div>
+                <div class="websiteNavBar col1 colText1" id="websiteNavBarID">
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/blomboStore.html'"><p>BLOMBO</p></div>
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/etdStore.html'"><p>ESCAPE THE DARKNESS</p></div>
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/replayStore.html'"><p>REPLAY</p></div>
+                    <!--<div class="navBox col3" type="button" onclick="location.href='randomArt.html'"><p>RANDOM ART</p></div>-->
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/aboutMe.html'"><p>ABOUT ME</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="content conGameStore">
+            <div class="gameStoreBanner" id="gSBanner">
+                <img src="images/games/replay/replayGameSplashImage.png" alt="game thumbnails, link to game downloads"></image>
+            </div>
+            
+            <br/>
+
+            <div class="gSGrid" id="gSGridID">
+                <div class="gSGridGlance">
+                    <p class="colText2">REPLAY - A 2D PLATFORMER<br/><br/>A simple short platformer. Each time you finish, when you replay the game gets better.<br/><br/>Made for <a href="https://itch.io/jam/brackeys-9">Brackeys Game Jam 2023.1</a>. My entry's page can be found <a href="https://itch.io/jam/brackeys-9/rate/1932579">here</a>.</p>
+                </div>
+                <div class="gSGridTrailer">
+                    <img src="images/games/replay/replayGameGIF.gif"></img>
+                </div>
+                <div class="gSGridSSShowcase" id="gSScreenShots">
+                    <div class="gSScreenshotList colText1">
+                        <div class="gSScreenshotContainer"><img src="images/games/replay/replayGameSS01.png"/></div>
+                        <div class="gSScreenshotContainer"><img src="images/games/replay/replayGameSS02.png"/></div>
+                        <div class="gSScreenshotContainer"><img src="images/games/replay/replayGameSS03.png"/></div>
+                        <div class="gSScreenshotContainer"><img src="images/games/replay/replayGameSS04.png"/></div>
+                        
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <div class="row">
+                            <div class="column">
+                                <img class="demo" src="images/games/replay/replayGameSS01.png" onclick="currentSlide(1)">
+                            </div>
+                            <div class="column">
+                                <img class="demo" src="images/games/replay/replayGameSS02.png" onclick="currentSlide(2)">
+                            </div>
+                            <div class="column">
+                                <img class="demo" src="images/games/replay/replayGameSS03.png" onclick="currentSlide(3)">
+                            </div>
+                            <div class="column">
+                                <img class="demo" src="images/games/replay/replayGameSS04.png" onclick="currentSlide(4)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gSGridDownloads">
+                    <div class="gSPurchaseOptions">
+                        <p>GET NOW FOR FREE</p>
+                        <div class="gSOption"><p class="colText1">Download from or play at: <a class="colText3" href="https://ghostanda.itch.io/replay">Itch.io</a></p></div>
+                    </div>
+                </div>
+                <div class="gSGridAbout">
+                    <p class="colText2"><span style="text-decoration: underline; font-size: 1.2rem;">About This Game</span><br/><br/>You make your way through the levels with a double jump (Space) and dash (LShift) at your disposal. Avoid the spikes or falling off the platform and use the gravity inverters and your momentum to your advantage to get through.<br/><br/>This was made for <a href="https://itch.io/jam/brackeys-9">Brackeys Game Jam 2023.1</a>. It is a themed, week long, game making competiotion. It was the first time I had done a game jam and it was something I enjoyed and hope to do again. There were 738 entrites and I placed 361st.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="bottomPageBuffer"></div>
+            <div class="footerBar col2">
+                <p class="footerButton colText1" type="button" onclick="location.href='#section-pageTop'">To Top</p>
+                <p class="footerButton colText1" type="button" onclick="location.href='https://jamesschaffer.dev/archive/oldSite/oldIndex.html'">Home</p>
+            </div>
+        </div>
+    </body>
+</html>
