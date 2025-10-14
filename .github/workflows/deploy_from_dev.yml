@@ -56,6 +56,3 @@ jobs:
 
           git commit -m "Deploy src from dev"
           git push
-  deploy:
-    needs: pull_from_dev
-    uses: ./.github/workflows/static_deploy.yml
