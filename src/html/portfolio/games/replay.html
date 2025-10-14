@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>James Schaffer</title>
+	<link rel="stylesheet" href="/css/mainStyles.css">
+	<link rel="stylesheet" href="/css/showcases.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=JetBrains Mono'>
+	<script src="/js/mainScript.js"></script>
+	<script src="/js/mediaGroup.js"></script>
+</head>
+<body>
+	<div class="mainContainer">
+		<header class="main-header">
+			<div class="top">
+				<h1>James Schaffer</h1>
+				<p>||</p>
+				<p>Aspiring game developer | Student | 2023 BAFTA YGD Finalist</p>
+				<div class="themeToggle" id="themeToggle">
+					<img src="/media/general/icons/sun.png" alt="Sun" class="icon sun">
+					<img src="/media/general/icons/moon.png" alt="Moon" class="icon moon">
+				<div class="mask_line"></div>
+			</div>
+			</div>
+			<div class="page-split"></div>
+			<div class="navbarContainer" data-nav-mapping="default" data-nav-selected="Portfolio,Games,Replay">
+			</div>
+		</header>
+		<main>
+			<div class="banner"><img src="/media/games/replay/replayGameBanner.png"/></div>
+
+			<div class="tagLine"><div class="tagScroller">
+				<div class="tag"><img src="/media/general/logos/unity.png"/><p>Unity</p></div>
+				<div class="tag"><img src="/media/general/logos/csharp.png"/><p>C#</p></div>
+				<div class="tag"><img src="/media/general/logos/aseprite.png"/><p>Aseprite</p></div>
+				<div class="tag"><img src="/media/general/logos/gimp.png"/><p>Gimp</p></div>
+			
+				<div class="tag"><img src="/media/general/logos/unity.png"/><p>Unity</p></div>
+				<div class="tag"><img src="/media/general/logos/csharp.png"/><p>C#</p></div>
+				<div class="tag"><img src="/media/general/logos/aseprite.png"/><p>Aseprite</p></div>
+				<div class="tag"><img src="/media/general/logos/gimp.png"/><p>Gimp</p></div>
+			</div></div>
+
+			<div class="showcase_1">
+				<p class="showcase_glance">Replay (2023) is a short platformer game. Each time you replay the game it evolves, adding: new levels, improved graphics and new mechanics.<br/><br/>This game was made for the <a href="https://itch.io/jam/brackeys-9">Brackeys Game Jam 2023.1</a> with the theme "an end is a new beginning".<br/><br/><b>PLAY HERE : <a href="https://jamesschaffer.itch.io/replay">jamesschaffer.itch.io/replay</a></b></p>
+
+				<div class="showcase_mediagroup">
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/replay/replayGameGIF.gif"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/replay/replayGameSS01.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/replay/replayGameSS02.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/replay/replayGameSS03.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/replay/replayGameSS04.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/replay/replayGameSplashImage.png"></img></div>
+					</div>
+
+					<a class="prev" onclick="changeSlide(-1)">❮</a>
+					<a class="next" onclick="changeSlide(1)">❯</a>
+
+					<div class="slideRow" data-selected=0>
+						<div onclick="setSlide(0)"><img class="slideRow_img" src="/media/games/replay/replayGameGIF.gif"></img></div>
+						<div onclick="setSlide(1)"><img class="slideRow_img" src="/media/games/replay/replayGameSS01.png"></img></div>
+						<div onclick="setSlide(2)"><img class="slideRow_img" src="/media/games/replay/replayGameSS02.png"></img></div>
+						<div onclick="setSlide(3)"><img class="slideRow_img" src="/media/games/replay/replayGameSS03.png"></img></div>
+						<div onclick="setSlide(4)"><img class="slideRow_img" src="/media/games/replay/replayGameSS04.png"></img></div>
+						<div onclick="setSlide(5)"><img class="slideRow_img" src="/media/games/replay/replayGameSplashImage.png"></img></div>
+					</div>
+				</div>
+
+				<div class="showcase_text">
+					<h2>Concept</h2>
+					<p>My concept was initial was that every time you finished a level (an ending) you could replay it with a new experience/version of the game each time (new beginning). There being a 'single' level that had secrets and alternate paths only found through trial and error, with some being inaccessible until the player had completed other endings. This was inspired by games such as The Stanley Parable, one of my favorite games of all time.
+					<br/><br/>
+					The concept diverged from this a bit, ending with the game starting as a single level which you replay, discovering alternate paths before it diverges completely into a more traditional 2D platformer. Upon completing the first level you are sent to the title screen which had been slightly updated, upon re-entering the game you will find the graphics have been improved and some mechanics have been added.</p>
+					<br/>
+					<h2>Development</h2>
+					<p>This was my first game jam and I didn't have that much experience so my project management and planning skills weren't that good at this point. I skipped a lot of the design phase and jumped into development and so there was no fully complete design for the game before development started, leading to the main mechanic and concepts of the game not being consistent.
+					<br/><br/>
+					During development I added more levels with updated graphics/game mechanics which diverged from the initial concept, whilst I liked these ideas, it meant the progression of the game was confusing to some and in-consistent.
+					<br/><br/>
+					Alongside The Stanley Parable, an inspiration for the game was Celeste's movement, I used this as an opportunity to try new techniques and to make a good 2D platformer player movement script. Whilst this did not go according to plan due to my lack of experience and time, it was interesting to learn about and try implementing some different techniques such varying gravity for different hang time/fall speeds, coyote time and wall jumping.
+					<br/><br/>
+					The game was developed in Unity using c#, over a period of one week. In this time I designed and built the game and all its assets. 
+					<br/><br/>
+					The main challenges of this game were the player movement and level design. With the game being quite easy I tried to add many levels and areas for the player to play including some easter eggs, this did mean less time on the movement script, concept, art and sound design. In all the rush to complete the game I forgot to add any music or sfx which many players pointed out.
+					<br/><br/>
+					Overall, I was happy with this game, it was a crucial point in my game development career which showed me the importance of planning my time, and gave me valuable experience.</p>
+				</div>
+			</div>
+
+		</main>
+	</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="HTML, CSS" />
+    
+        <meta name="description" content="Escape The Darkness is a free to play puzzle game. You play as mike, a security guard stuck in a facility and have to escape before you are consumed by the darknes." />
+        <title>James Schaffer</title>
+        <link rel="icon" href="images/games/websiteIcon.png">
+        
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js"></script>
+    </head>
+
+    <body class="col0">
+        <div class="header">
+            <div class="headerBar col2" id="section-pageTop">
+                <div class="headerBarBuffer"></div>
+                    <h1 class="colText1" id="pageHeader" type="button" onclick="location.href='https://jamesschaffer.dev/archive/oldSite/oldIndex.html'">
+                        James Schaffer
+                    </h1>
+                    <div class="headerBarBuffer">
+                        <img type="button" class="headerBarHamburger" src="images/general/hamburgerNavIcon.png" onclick="websiteNavBarDropDown()"></image>
+                    </div>
+                </div>
+                <div class="websiteNavBar col1 colText1" id="websiteNavBarID">
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/blomboStore.html'"><p>BLOMBO</p></div>
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/etdStore.html'"><p>ESCAPE THE DARKNESS</p></div>
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/replayStore.html'"><p>REPLAY</p></div>
+                    <!--<div class="navBox col3" type="button" onclick="location.href='randomArt.html'"><p>RANDOM ART</p></div>-->
+                    <div class="navBox col3" type="button" onclick="location.href='/archive/oldSite/aboutMe.html'"><p>ABOUT ME</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="content conGameStore">
+            <div class="gameStoreBanner" id="gSBanner">
+                <img src="images/games/blombo/blomboGameSplashImage.png" alt="game thumbnails, link to game downloads"></image>
+                <div class="content"><h2 class="colText2">BLOMBO</h2></div>
+            </div>
+            
+            <br/>
+
+            <div class="gSGrid" id="gSGridID">
+                <div class="gSGridGlance">
+                    <p class="colText2">BLOMBO - A 2D SHOOTER<br/><br/>Explore the levels, shoot enemies throughout the level to survive and try to escape.</p>
+                </div>
+                <div class="gSGridTrailer"><!--no trailer so image-->
+                    <img src="images/games/blombo/blomboGameGIF.gif"></img>
+                </div>
+                <div class="gSGridSSShowcase" id="gSScreenShots">
+                    <div class="gSScreenshotList colText1">
+                        <div class="gSScreenshotContainer"><img src="images/games/blombo/blomboGameSS01.png"/></div>
+                        <div class="gSScreenshotContainer"><img src="images/games/blombo/blomboGameSS02.png"/></div>
+                        
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <div class="row">
+                            <div class="column">
+                                <img class="demo" src="images/games/blombo/blomboGameSS01.png" onclick="currentSlide(1)">
+                            </div>
+                            <div class="column">
+                                <img class="demo" src="images/games/blombo/blomboGameSS02.png" onclick="currentSlide(2)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gSGridDownloads">
+                    <div class="gSPurchaseOptions">
+                        <p>GET NOW FOR FREE</p>
+                        <div class="gSOption"><p class="colText1">Download from: <a class="colText3" href="https://ghostanda.itch.io/blombo">Itch.io</a></p></div>
+                    </div>
+                </div>
+                <div class="gSGridAbout">
+                    <p class="colText2">About This Game<br/><br/>My first serious game. A little 2D shooter, you explore the levels trying to escape whilst battling a variety of enemies. Originally I was going to have a story behind it with some sort of cutscenes and dialogue to explain it but that was later scrapped as I lost motivation and moved on to different projects.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="bottomPageBuffer"></div>
+            <div class="footerBar col2">
+                <p class="footerButton colText1" type="button" onclick="location.href='#section-pageTop'">To Top</p>
+                <p class="footerButton colText1" type="button" onclick="location.href='/archive/oldSite/index.html'">Home</p>
+            </div>
+        </div>
+    </body>
+</html>

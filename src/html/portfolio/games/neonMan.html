@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>James Schaffer</title>
+	<link rel="stylesheet" href="/css/mainStyles.css">
+	<link rel="stylesheet" href="/css/showcases.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=JetBrains Mono'>
+	<script src="/js/mainScript.js"></script>
+	<script src="/js/mediaGroup.js"></script>
+</head>
+<body>
+	<div class="mainContainer">
+		<header class="main-header">
+			<div class="top">
+				<h1>James Schaffer</h1>
+				<p>||</p>
+				<p>Aspiring game developer | Student | 2023 BAFTA YGD Finalist</p>
+				<div class="themeToggle" id="themeToggle">
+					<img src="/media/general/icons/sun.png" alt="Sun" class="icon sun">
+					<img src="/media/general/icons/moon.png" alt="Moon" class="icon moon">
+					<div class="mask_line"></div>
+				</div>
+			</div>
+			<div class="page-split"></div>
+			<div class="navbarContainer" data-nav-mapping="default" data-nav-selected="Portfolio,Games,Neon Man">
+			</div>
+		</header>
+		<main>
+			<div class="banner" style="margin-bottom: 0.2cm;"><img src="/media/games/neonMan/neonManGameBanner.png"/></div>
+
+			<div class="tagLine"><div class="tagScroller">
+				<div class="tag"><img src="/media/general/logos/godot.png"/><p>Godot</p></div>
+				<div class="tag"><img src="/media/general/logos/aseprite.png"/><p>Aseprite</p></div>
+
+				<div class="tag"><img src="/media/general/logos/godot.png"/><p>Godot</p></div>
+				<div class="tag"><img src="/media/general/logos/aseprite.png"/><p>Aseprite</p></div>
+			</div></div>
+
+			<div class="showcase_1">
+				<p class="showcase_glance">Neon man (2024)<br/>Brackeys Game Jam 2024.2 submission - #719/1480<br/><br/>Neon man is a short 2D survival-platformer game in which you have to explore, collect tokens and get back to a safe area before a storm rolls in. This game was made in one week for the 2024.2 Brackeys Game Jam, this was my second game jam and my first full game with Godot.<br/><br/>I solely developed this game over a week long period, all code, art, sfx and music was made by me.</p>
+
+				<div class="showcase_mediagroup">
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/neonMan/neonManGameSplashScreen.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/neonMan/neonManGameSS01.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/neonMan/neonManGameSS02.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/neonMan/neonManGameSS03.png"></img></div>
+					</div>
+
+					<a class="prev" onclick="changeSlide(-1)">❮</a>
+					<a class="next" onclick="changeSlide(1)">❯</a>
+
+					<div class="slideRow" data-selected=0>
+						<div onclick="setSlide(0)"><img class="slideRow_img" src="/media/games/neonMan/neonManGameSplashScreen.png"></img></div>
+						<div onclick="setSlide(1)"><img class="slideRow_img" src="/media/games/neonMan/neonManGameSS01.png"></img></div>
+						<div onclick="setSlide(2)"><img class="slideRow_img" src="/media/games/neonMan/neonManGameSS02.png"></img></div>
+						<div onclick="setSlide(3)"><img class="slideRow_img" src="/media/games/neonMan/neonManGameSS03.png"></img></div>
+					</div>
+				</div>
+
+				<div class="showcase_text">
+					<h2>Concept</h2>
+					<div class="list">
+						<p>The theme for this jam was Calm before the storm, I had 2 main inspirations for the game :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Rainworld, from which the rain mechanic directly inspiring my storm mechanic and survival-exploration aspects of my game.</li>
+							<li>The Tron films and in-dev textures for games which led to me creating the minimalistic neon artstyle used in the game.</li>
+						</ul>
+					</div>
+					<p>The main mechanic in Neon Man is the token and jump system, as you collect more tokens you upgrade your jump on the following day. These tokens are spread throughout the world which the player must find to progress through it.</p>
+					<br/>
+					<h2>Mechanics</h2>
+					<div class="list">
+						<p>Jump upgrades :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Jump upgrades is one of two core mechanics in the game, it allows for sectioning off different areas of the game by creating zones only accessible by upgrading the jump.</li>
+							<li>The player collects tokens spread throughout the level, when a certain amount is collected and the player sleeps through a storm, their jump will increase in height in the following day.</li>
+							<li>The amount of tokens needed for the jump changes for each jump allowing for control over how big an area can be, more tokens needed means a bigger area can be created to put the tokens in.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>The storm :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>A storm which rolls around every 2 minutes, which kills the player unless they are sheltering in a safe area.</li>
+							<li>Short timer due to small world size, if it were longer it may never occur in a normal playthrough as it would be too easy to get to next safe zone. Making it short promotes moving fast and taking risks making the storm feel more dangerous.</li>
+							<li>If development were to continue then a larger world size and timer could be implemented.</li>
+							<li>The effect was done with a shader in Godot's shading language which is similar to GLSL, it uses a mathematical function to create the effect.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>Other elements :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>There are many different elements in the world such as : spikes, platforms (stationary/moving/falling), fake walls/floors.</li>
+							<li>These all allow for more diverse and complex levels and secrets. This is important as it adds interesting challenges to the player and adds opportunities for rewarding exploration which is a key aspect of the game.</li>
+						</ul>
+					</div>
+					<h2>Difficulties and Reflection</h2>
+					<br/>
+					<p>This game was not very technically complex, the main difficulties from this game were the time constraints and new tools being used. Building a full game in a week means good organisation is needed, each aspect of the game needs time put toward it. This for the most part went well except that I neglected sound till the end resulting in little sound design and no music. The lack of music/sound was a major issue pointed out by players.</p>
+					<p>Another difficulty with a project with such a small time scale is the lack of proper testing leading to bugs and issues with gameplay, Neon man was (to my knowledge) bugless, even commented on by one player. There were issues with gameplay though the movement, it was very tight and unforgiving which wasn't the initial idea, this should have been planned better and implemented one way or the other. Potentially I could have adding some code to make it easier like in many platformers, having things like coyote time and jump buffers would make it feel more fair to the player. I did implement smaller hitboxes for the spikes with the aim to do this but more could have been done.</p>
+					<br/>
+					<h2>Links:</h2>
+					<div class="list">
+						<ul>
+							<li>Itch.io / game download : <a href="https://jamesschaffer.itch.io/neon-man">jamesschaffer.itch.io/neon-man</a></li>
+							<li>Game jam submission : <a href="https://itch.io/jam/brackeys-12/rate/2969535">itch.io/jam/brackeys-12/rate/2969535</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</main>
+	</div>
+</body>
+</html>

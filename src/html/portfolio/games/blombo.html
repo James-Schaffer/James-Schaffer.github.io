@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>James Schaffer</title>
+	<link rel="stylesheet" href="/css/mainStyles.css">
+	<link rel="stylesheet" href="/css/showcases.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=JetBrains Mono'>
+	<script src="/js/mainScript.js"></script>
+	<script src="/js/mediaGroup.js"></script>
+</head>
+<body>
+	<div class="mainContainer">
+		<header class="main-header">
+			<div class="top">
+				<h1>James Schaffer</h1>
+				<p>||</p>
+				<p>Aspiring game developer | Student | 2023 BAFTA YGD Finalist</p>
+				<div class="themeToggle" id="themeToggle">
+					<img src="/media/general/icons/sun.png" alt="Sun" class="icon sun">
+					<img src="/media/general/icons/moon.png" alt="Moon" class="icon moon">
+					<div class="mask_line"></div>
+				</div>
+			</div>
+			<div class="page-split"></div>
+			<div class="navbarContainer" data-nav-mapping="default" data-nav-selected="Portfolio,Games,Blombo">
+			</div>
+		</header>
+		<main>
+			<div class="banner" style="margin-bottom: 0.2cm;"><img src="/media/games/blombo/blomboGameBanner.png"/></div>
+
+			<div class="tagLine"><div class="tagScroller">
+				<div class="tag"><img src="/media/general/logos/unity.png"/><p>Unity</p></div>
+				<div class="tag"><img src="/media/general/logos/csharp.png"/><p>C#</p></div>
+				<div class="tag"><img src="/media/general/logos/gimp.png"/><p>Gimp</p></div>
+
+				<div class="tag"><img src="/media/general/logos/unity.png"/><p>Unity</p></div>
+				<div class="tag"><img src="/media/general/logos/csharp.png"/><p>C#</p></div>
+				<div class="tag"><img src="/media/general/logos/gimp.png"/><p>Gimp</p></div>
+			</div></div>
+
+			<div class="showcase_1">
+				<p class="showcase_glance">Blombo (2022)<br><br>Blombo is a top down shooter game in which you shoot enemies until you reach the end of the level, there is a variety of enemies and levels with some bosses. This is the first game I made and was a way of learning the tools and workflow of game development as well as practicing that which I had learnt from tutorials previous to this.<br><br>I solely developed this game over a week long period, all code, art, sfx and music was made by me.</p>
+
+				<div class="showcase_mediagroup">
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/blombo/blomboGameGIF.gif"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/blombo/blomboGameSplashImage.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/blombo/blomboGameSS01.png"></img></div>
+					</div>
+					<div class="showcase_image" onclick="viewImageBig(this)">
+						<div><img src="/media/games/blombo/blomboGameSS02.png"></img></div>
+					</div>
+
+					<a class="prev" onclick="changeSlide(-1)">❮</a>
+					<a class="next" onclick="changeSlide(1)">❯</a>
+
+					<div class="slideRow" data-selected=0>
+						<div onclick="setSlide(0)"><img class="slideRow_img" src="/media/games/blombo/blomboGameGIF.gif"></img></div>
+						<div onclick="setSlide(1)"><img class="slideRow_img" src="/media/games/blombo/blomboGameSplashImage.png"></img></div>
+						<div onclick="setSlide(2)"><img class="slideRow_img" src="/media/games/blombo/blomboGameSS01.png"></img></div>
+						<div onclick="setSlide(3)"><img class="slideRow_img" src="/media/games/blombo/blomboGameSS02.png"></img></div>
+					</div>
+				</div>
+
+				<div class="showcase_text">
+					<h2>Concept</h2>
+					<p>The concept for this game was fairly barebones but I wanted to make some sort of 2D shooter game. Being my first game it was more an experiment to add as many features as I could and experience making many different aspects of a game. It ended up with a top down shooter game with the main mechanics being shooting individual or small groups of enemies whilst exploring small and fairly linear levels to find keys and exits.<br><br>The game had a backstory about escaping a facility with a buddy robot, this was inspired by the likes of portal's facilities and the common dynamic of main character and support buddy character in games and other media (e.g. dogs in many games or the ghost in destiny 2). The story was not really present in the game due to my lack of experience at the time and loss of interest in the project but did influence some level design such as the prison in the final level.<br><br>The game as a whole is meant to be played at a fast pace, the player has high health, fast shooting gun and limited vision which promotes constant movement and shooting.</p>
+					<br/>
+					<h2>Mechanics</h2>
+					<div class="list">
+						<p>Gun :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>The gun is a simple recast system firing at set intervals, it uses a mask system to check what its hitting and what it should pass through.</li>
+							<li>The gun uses an animation, partial system and sound effect to provide player feedback on the shots. The different parts of the player feedback are not synced up meaning the gun can be confusing to the player regarding when it fires.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>Enemies :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>There are a verity of enemies which use a set of modular components, many game objects use the same set of scripts such as health, damage and movement scripts, this allowed for faster development, easier debugging along with the other benefits of composition over inheritance.</li>
+							<li>This modular system allowed for many options with enemies with things like if they damage the player, move or if they drop an item.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>Keys & buddy :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Basic follow script, keys scale speed depending on player distance to add a 'magnetic' effect.</li>
+							<li>Adds interactable elements the broaden the gameplay, buddy was meant to be linked to story to add a character which the player was to become attached too.</li>
+						</ul>
+					</div>
+					<div class="list">
+						<p>FoV system :</p>
+						<div style="height: 0.2cm;"></div>
+						<ul>
+							<li>Later on a FoV system, similar to the one which was used in Escape the Darkness, was made. This was used to hide enemies out of site to make the game more reactive than strategic.</li>
+						</ul>
+					</div>
+					<br/>
+					<h2>Mechanics</h2>
+					<p>This game was not technically complex, however being my first game there were many bugs and engine issues which I struggled to diagnose and debug. One of the main difficulties was making a working FoV system, having it being real time and accurate enough for some of the smaller game objects like the bars on the prison cells was difficult requiring multiple iterations.<br><br>Another major difficulty was working with my poor code quality at the time, c# and oop were relatively new concepts to me at the time and so keeping my codebase organised was a difficult task. One reason which contributed to me losing interest in the project was the increasing difficulty to add new features due to the messy code. This is something I have worked a lot on since.<br><br>In reflection there is nothing major I have to comment on, this was a good first step into game development which taught me alot and highlighted a lot of areas I needed to work on, such as engine knowledge, better programming practices and project management.</p>
+					<br>
+					<h2>Links:</h2>
+					<div class="list">
+						<ul>
+							<li>Itch.io / game download : <a href="https://jamesschaffer.itch.io/blombo">jamesschaffer.itch.io/blombo</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</main>
+	</div>
+</body>
+</html>
