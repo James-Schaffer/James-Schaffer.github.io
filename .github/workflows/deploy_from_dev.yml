@@ -55,8 +55,6 @@ jobs:
           fi
 
           git commit -m "Deploy src from dev"
-
-          git merge dev --strategy=ours -m "Merge dev into live (deployment marker)"
           git push
   deploy:
     needs: pull_from_dev
