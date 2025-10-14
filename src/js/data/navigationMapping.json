@@ -70,7 +70,7 @@
 
     "programming" : [
         {
-            "text" : "2D 3D coord Pairing [FIX ME]",
+            "text" : "2D 3D coord Pairing",
             "path" : "/html/portfolio/programming/mappingInfinite2DArraysToA1DArray.html",
             "sub" : null
         },
