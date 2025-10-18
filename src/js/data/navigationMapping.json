@@ -78,6 +78,11 @@
             "text" : "This website",
             "path" : "/html/portfolio/programming/thisWebsite.html",
             "sub" : null
+        },
+        {
+            "text" : "Recipe timer app",
+            "path" : "/html/portfolio/programming/recipeManagerApp.html",
+            "sub" : null
         }
     ],
 

@@ -188,7 +188,7 @@ a:hover {
 	display: inline-block;
 }
 
-.main-header .top > h1 {
+.main-header .top h1 {
 	font-weight: bold;
 	color: #4477c4;
 }
