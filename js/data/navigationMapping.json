@@ -19,11 +19,6 @@
             "text" : "Contact & Links",
             "path" : "/html/contact.html",
             "sub" : null
-        },
-        {
-            "text" : "Old Site",
-            "path" : "/html/archive/oldSite/oldIndex.html",
-            "sub" : null
         }
     ],
 
