@@ -31,6 +31,10 @@ body {
 	color: #ffffff;
 }
 
+.darkmode * {
+	scrollbar-color: #b3b3b3 #1d1d1d;
+}
+
 /*=============================================*/
 
 h2,
@@ -193,7 +197,7 @@ a:hover {
 	color: #4477c4;
 }
 
-.main-header > .page-split {
+.page-split {
 	height: 1px;
 
 	margin: 0.15cm 0;
@@ -267,3 +271,107 @@ a:hover {
 
 /*=============================================*/
 
+.code_container {
+	background-color: #f5f4ee;
+	border-radius: 0.1cm;
+	padding: 0.5cm;
+	margin: 0.25cm;
+}
+.darkmode .code_container {
+	background-color: #0f0f0d;
+	color: #ffffff;
+}
+
+.code_container code {
+	white-space: pre-wrap;
+	tab-size: 2rem;
+}
+
+
+.code_container_colapsable {
+	display: grid;
+	grid: 'T P' 'T C';
+	grid-template-columns: min-content auto;
+	overflow-x: scroll;
+	background-color: #f5f4ee;
+	padding: 0.5cm;
+}
+.darkmode .code_container_colapsable {
+	background-color: #0f0f0d;
+	color: #ffffff;
+}
+
+.code_container_colapsable input {
+	top: 0;
+    position: relative;
+    margin-bottom: auto;
+
+	grid-area: T;
+}
+.code_container_colapsable p {
+	display: flex;
+
+	grid-area: P;
+}
+.code_container_colapsable code {
+	white-space: nowrap;
+	tab-size: 2rem;
+	display: none;
+
+	grid-area: C;
+}
+
+.code_container_colapsable input:checked ~ code {
+	display: flex;
+	white-space: pre-wrap;
+}
+
+
+.data_container {
+	display: flex;
+	overflow-x: scroll;
+	background-color: #f5f4ee;
+	padding: 0.5cm;
+}
+.darkmode .data_container {
+	background-color: #0f0f0d;
+	color: #ffffff;
+}
+
+.data_container input {
+	top: 0;
+    position: relative;
+    margin-bottom: auto;
+}
+.data_container code {
+	white-space: nowrap;
+	tab-size: 2rem;
+}
+
+.data_container input:checked ~ code {
+	display: flex;
+	white-space: pre-wrap;
+}
+
+
+
+
+
+.highlightBox {
+	background-color: #f5f4ee;
+	padding: 0.5cm;
+	margin-top: 0.5cm;
+	border-radius: 0.1cm;
+}
+.darkmode .highlightBox {
+	background-color: #0f0f0d;
+}
+
+.highlightBox p {
+	font-weight: bold;
+	text-decoration: underline;
+}
+.highlightBox ul {
+	padding-left: 0.5cm;
+	margin: 0;
+}
