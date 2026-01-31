@@ -1,1 +1,1361 @@
-<p>WIP</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>James Schaffer</title>
+	<link rel="stylesheet" href="/css/mainStyles.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=JetBrains Mono'>
+	<script src="/js/mainScript.js"></script>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+					onload="renderMathInElement(document.body);"></script>
+
+</head>
+
+<body>
+	<div class="mainContainer">
+		<header class="main-header">
+			<div class="top">
+				<h1>James Schaffer</h1>
+				<p>||</p>
+				<p>Aspiring game developer | Student | 2023 BAFTA YGD Finalist</p>
+				<div class="themeToggle" id="themeToggle">
+					<img src="/media/general/icons/sun.png" alt="Sun" class="icon sun">
+					<img src="/media/general/icons/moon.png" alt="Moon" class="icon moon">
+					<div class="mask_line"></div>
+				</div>
+			</div>
+			<div class="page-split"></div>
+			<div class="navbarContainer" data-nav-mapping="default"
+				data-nav-selected="Portfolio,Programming,Random point distribution research">
+			</div>
+		</header>
+		<main>
+			<div class="banner n" style="margin-bottom: 0.2cm;"><img src="/media/projects/cantorParing/banner.png" />
+			</div>
+
+			<h2 class="page-title" dir="auto">Mapping an infinite 2D array to a 1D array (Cantor pairing and random coordinate generation methods)</h2>
+			<br>
+			<div class="tagLine">
+				<div class="tagScroller">
+					<div class="tag"><img src="/media/general/logos/python.png" />
+						<p>Python</p>
+					</div>
+					<div class="tag"><img src="/media/general/logos/matPlotLib.png" />
+						<p>MatPlotLib</p>
+					</div>
+
+					<div class="tag"><img src="/media/general/logos/python.png" />
+						<p>Python</p>
+					</div>
+					<div class="tag"><img src="/media/general/logos/matPlotLib.png" />
+						<p>MatPlotLib</p>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<div class="page-split"></div>
+
+			<h2>Foreword</h2>
+			<p>This is a work in progress page and project, it is currently paused but I hope to return to it at some point. There are many issues, oversights and things that need to be re-done or finished. There may be bugs on this page with links or buttons, it is incomplete and the writeup is ported over from another application. If you find any issues feel free to let me know (see <a href="/html/contact.html">Contact & Links</a>).<br>Thanks so much - James</p>
+
+			<div class="page-split"></div>
+			<br>
+
+			<h2 id="01_00_0">Contents</h2>
+			<ul>
+				<li><a href="#01_00_0">Contents</a></li>
+				<li><a href="#02_00_0">Introduction</a></li>
+				<li><a href="#03_00_0">Initial problem</a></li>
+				<li><a href="#04_00_0">Initial solutions</a><ul>
+					<li><a href="#04_01_0">Random values</a></li>
+					<li><a href="#04_02_0">Random values from array</a></li>
+					<li><a href="#04_03_0">Iterative development of solutions</a></li>
+				</ul></li>
+				<li><a href="#05_00_0">Multiprocessing test code and binary search/array benchmarking</a><ul>
+					<li><a href="#05_01_0">Code</a><ul>
+						<li><a href="#05_01_1">Soultions</a></li>
+						<li><a href="#05_01_2">Benchmarking code</a></li>
+						<li><a href="#05_01_3">Code explanation</a></li>
+					</ul></li>
+					<li><a href="#05_02_0">Benchmarking and testing</a><ul>
+						<li><a href="#05_02_1">Series vs multiprocessing tests benchmarking</a></li>
+						<li><a href="#05_02_2">Solution comparisons</a></li>
+					</ul></li>
+				</ul></li>
+				<li><a href="#06_00_01">Array and Dictionary solution</a></li>
+				<li><a href="#07_00_01">Other methods and expanding the problem</a></li>
+			</ul>
+
+			<br>
+			<div class="page-split"></div>
+			<br>
+
+			<h2 id="02_00_0">Introduction</h2>
+			<p>
+				This is a continuation and finalization of an old project from a few years ago which I have re-visited a multiple times, it is mainly theoretical and ended up in a place where it had no practical application for the game it was originally meant to be used with but is interesting nonetheless. It starts off with randomly generating coordinates in a 2D grid and ends up talking about cantor paring functions. Along the way I also developed some cool function benchmarking code which might end up being its own project.
+				<br><br>
+				Its worth mentioning here as well all the code here will be written in python (as it is what I was using at the time and as it is easy to follow) and graphs/math will be done with Desmos and Excel.
+			</p>
+
+			<br>
+			
+			<h2 id="03_00_0">Initial Problem</h2>
+			<p>
+				I was designing a 2D videogame, the main interface was to be a grid and have some sort of treasure hunt aspects to the game. The game was mainly to practice using classes and procedural level generation in games. The grid was to have randomly distributed points of interest across it, and so I had to come up with a way of distributing them. I wanted to do it in a way which would work for any sized grid as I wasn't sure yet how big the grid would be and do so in an as efficient as possible way. The solution also needs to work quickly enough the player doesn't get bored waiting, it can't be that they leave the game as the level takes so long to generate.
+			</p>
+			<br>
+			<p>Here is a summarized list of requirements :</p>
+			<ul>
+				<li>Have a function which when called returns a random array of coordinates.</li>
+				<li>The solution should be able to work for any grid size and number of requested coordinates.</li>
+			</ul>
+
+			<br>
+
+			<h2 id="04_00_0">Initial Solutions</h2>
+			<p>All the solutions assume a couple of things :</p>
+			<ul>
+				<li>The width and height of the grid are known at runtime and will be passed in as a parameter.</li>
+				<li>The number of points of interest will be passed in as a parameter.</li>
+				<li>The grid is only in the positive region, e.g. no negative x or y coordinates (although this is possible and I will talk about this later).</li>
+			</ul>
+
+			<h3 id="04_01_0"> > Random values</h3>
+			<div class="code_container"><code>import random
+
+# Picks random cells until enough have been generated:
+#   gridSize defines max values
+#   requestedCells defines how many cells
+def getRandomCells(gridSize: list[int], requestedCells: int) -> list[list[int]]:
+	totalCells = gridSize[0] * gridSize[1]
+
+	if requestedCells >= totalCells:
+		raise ValueError(f"requestedCells({requestedCells}) cannot be greater than total number of cells ({totalCells})")
+	
+	returnCells = []
+	
+	while len(returnCells) < requestedCells:
+		newCoord = [random.randint(0, gridSize[0]-1), random.randint(0, gridSize[1]-1)]
+		
+		if newCoord in returnCells:
+			continue
+
+		returnCells.append(newCoord)
+		
+	return returnCells</div></code>
+			<br>
+			<p>My initial solution was randomly picking coordinates until I had enough, this however is both inefficient and unreliable.
+				<br><br>
+			The function takes the width and height of the grid and then used them to find the total number of grid cells, it then loops until the number of coordinates is the same as the number of requested cells. Each iteration it gets 2 random numbers using the random library, one for x and one for y, both in the range of (0, gridSize). If the new coordinate is in the return array then it is discarded otherwise its added.
+				<br><br>
+			The issue with this is as its random and doesn't take into account which cells have already been selected and so the same one could be picked multiple times wasting time and resources. Theoretically the program could randomly pick the same coordinate forever and not finish.
+			</p>
+
+			<br>
+
+			<h3 id="04_02_0"> > Random values from array</h3>
+			<div class="code_container"><code>import random
+
+def getAllCoords(gridSize: list[int]) -> list[list[int]]:
+	returnCoords = []
+
+	for x in range(0,gridSize[0]):
+		for y in range(0, gridSize[1]):
+			returnCoords.append([x,y])
+	
+	return returnCoords
+
+def getRandomCells(gridSize: list[int], requestedCells: int) -> list[list[int]]:
+	totalCells = gridSize[0] * gridSize[1]
+
+	if requestedCells >= totalCells:
+		raise ValueError(f"numberOfPOIs ({requestedCells}) cannot be greater than total number of cells ({totalCells})")
+	
+	returnCells = []
+	remainingCells = getAllCoords(gridSize)
+	
+	while len(returnCells) < requestedCells:
+		newCoord = random.choice(remainingCells)
+
+		returnCells.append(newCoord)
+		remainingCells.remove(newCoord)
+		
+	return returnCells</code></div>
+			<br>
+			<p>My second solution is similar to my first one, randomly picking coordinates, this time however the coordinates are picked from an array. This method is reliable making it more efficient in a lot of scenarios, however it does come with an extra computational cost in the form of generating the remainingCells array.
+				<br><br>
+			The function takes the same arguments and works in a very similar way to the first solution. Here though first an array is initialized by a helper function, it contains all the grid locations and is used to prevent 2 coordinates getting randomly selected twice. Then, same as the first solution, it loops until the number of coordinates is the same as the number of requested cells, this could be replaced by a for loop though as it will finish in a known number of iterations. To select a value it uses the random library to pick a value from the remainingCells array and then add it to the return and finally remove it from the remainingCells array, this means it cannot be picked again.
+				<br><br>
+			This solution is good as its reliable, it doesn't have the chance of running forever, however it does have the issue of having to generate the array in the first place.
+			</p>
+			
+			<br>
+
+			<h3 id="04_03_0"> > Iterative development of solutions</h3>
+			<div class="code_container"><code>import timeit
+
+# Generate random tests here
+def genTests(minGridSizeLen : int, maxGridSizeLen : int, minRequests : int, maxRequests : int, testNumb : int, IOData : list[dict] = {}):
+	for i in range(0, testNumb):
+		test_gridSize = [
+			random.randint(minGridSizeLen, maxGridSizeLen),
+			random.randint(minGridSizeLen, maxGridSizeLen)
+		]
+		test_requests = random.randint(minRequests, min(maxRequests, test_gridSize[0]*test_gridSize[1]))
+
+		IOData.append({ 
+			"size" : test_gridSize,
+			"request" : test_requests,
+		})
+	
+	return IOData
+
+# Run tests for both solutions
+def testSolutions(IOData):
+	time_1 = 0
+	time_2 = 0
+
+	for test in IOData:
+		print(test)
+
+		solution1_wrapped = lambda: getRandomCells_1(test["size"], test["request"])
+		solution2_wrapped = lambda: getRandomCells_2(test["size"], test["request"])
+
+		time_1_tmp = timeit.timeit(solution1_wrapped, number=10000)
+		time_2_tmp = timeit.timeit(solution2_wrapped, number=10000)
+
+		print(f"T1 : {time_1_tmp}\nT2 : {time_2_tmp}\n")
+
+		time_1 += time_1_tmp
+		time_2 += time_2_tmp
+
+	return [time_1, time_2]</code></div>
+			<br>
+			<p>Benchmarking code, this is expanded on and edited throughout but is based of this. Full code is shared at milestones. For benchmarking purposes return values have been suspended but the code functionally is the same.
+				<br>
+			Upon initial benchmarking for the 2nd solution (see full benchmarking below) I realized the use of .remove() was very inefficient it works by using a linear search for each iteration of the loop, this means the algorithm is of \( O(N^2) \) time complexity. To improve the code we could use .pop() which is \( O(1) \), to do this we would have to find the index of the coordinate of the 1d array though.
+			<!--Note to self this is stupid, you can use random between 0 and array length to get a random index and then get it using arr[i] and finally use pop(i), the use of random.choice is not a good idea-->
+				<br><br>
+			To find its index in the array we could try to use a  \( O(1) \) method, taking our knowledge of how the array is generated and using a mathematical formula, initially we can use the equation :
+				<br>
+			
+			\[ i = (x * h) + y \]
+			\(i : index \kern{1em} x : x\, coordinate \kern{1em} y : y\, coordinate \kern{1em} h : height\, of\, grid\)
+				<br><br>
+			Which maps a grid like this (note bottom left is 0,0):
+
+			\[h \begin{cases}
+				\def\arraystretch{1.5}
+					\begin{array}{|c|c|c|}\hline
+						2 & 5 & 8 \\ \hline
+						1 & 4 & 7 \\ \hline
+						0 & 3 & 6 \\ \hline
+					\end{array}
+				\end{cases}
+			\]
+
+			<br>
+				This will give us the index in the array of a coordinate, this is useful and can be used later, however by itself it will no longer work as after one coordinate has been removed from the remainingCells array, it will be out of sync :
+			</p>
+
+			<div class="code_container"><code># BEFORE
+[ [0,0] , [0,1] , [1,0] , [1,1] ]
+
+# using [1,0]
+i = (1 * 2) + 0 => i = 2
+
+# correct
+
+
+# AFTER
+[ [0,0] , [0,1] , [1,1] ]
+
+# using [1,1]
+i = (1 * 2) + 1 => i = 3
+
+# incorrect</code></div>
+			<br>
+			<p>
+				To solve this we would have to take to account how many cells to the left (in the remainingCells array) have been removed already and use it to apply an offset. In the example above 1 cell had been removed to the left in the after example, applying an offset of -1 would have yielded the correct value. To do this however it will require finding the index of the coordinate anyway. Making it redundant in this scenario.
+					<br><br>
+				Given this approach isn't working we can compromise on binary search which is O(log(N)), a lot better than out O(N) from before and given the way the array is generated and handled it will always be ordered. We will have to modify the binary search to take into account the array structure but that isn't difficult, initially it should search only on the x coordinate then when the x coordinate is matching search with the y. Here it is :
+			</p>
+			<div class="code_container"><code>def binarySearchCoords(coord : list[int], coordArray : list[list[int]]) -> int:
+	l_pointer = 0
+	r_pointer = len(coordArray) -1
+
+	while l_pointer <= r_pointer:
+		m_pointer = l_pointer + floor( (r_pointer - l_pointer) / 2)
+		if coordArray[m_pointer][0] < coord[0]:
+			l_pointer = m_pointer+1
+		elif coordArray[m_pointer][0] > coord[0]:
+			r_pointer = m_pointer-1
+		else:
+			if coordArray[m_pointer][1] < coord[1]:
+				l_pointer = m_pointer+1
+			elif coordArray[m_pointer][1] > coord[1]:
+				r_pointer = m_pointer-1
+			else:
+				return m_pointer</code></div>
+			<p>
+				Benchmarking the initial solution with random against the one with an array and binary search we get the results :
+			</p>
+			<ul>
+				<li>T1 : 449.83021299913526</li>
+				<li>T2 : 176.24670920008793</li>
+			</ul>
+			<p>Note :</p>
+			<ul>
+				<li>The input data was randomly generated (par 1 test case)</li>
+				<li>There were 101 test cases</li>
+				<li>The results shows the cumulative time for both algorithms across all test cases</li>
+			</ul>
+			<p>Code for testing : </p>
+			<div class="code_container"><code># Define manual tests here
+IOData = [
+	{
+		"size" : [2, 2],
+		"request" : 2,
+	}
+]
+
+IOData = genTests(2, 30, 0, 500, 100, IOData)
+results = testSolutions(IOData)
+
+print(f"T1 : {results[0]}\nT2 : {results[1]}\n")</code></div>
+			<br>
+			<p>
+				T1 being the initial solution and T2 being the one with a cell array and binary search. T2 is around 2.5x faster than T1, this is with a small data set and limited grid size/data points generated. With larger datasets I would expect T2 to increase in efficiency relative to T1.
+					<br><br><br>
+				Now this is great, we have a working solution with good speeds which is very much usable in the game, you could stop here. However, at this point I was interested to see just how efficient I could make it and I hadn't quite given up on the idea of a O(1) algorithm for mapping the 2D array to the 1D cellsRemaining array.
+					<br><br>
+				Before this though, I'm going to update the testing code to be more structured and to make benchmarking multiple functions easier.
+					<br><br>
+				I implemented a class, Tests, which extends list, it stores all the tests as dictionaries and has extra functionality to generate and run them. 
+				<!--I also    Note to self : fix, idk what this is--> 
+					<br><br><br>
+				Some example outputs :
+			</p>
+			<div class="data_container">
+				<input type="checkbox">
+				<code>[
+	{'totalTime': 455.88321849983186, 'times': [
+			2.528819300001487,
+			1.6722469001542777,
+			0.5159489999059588,
+			0.48398880008608103,
+			3.2616909998469055,
+			3.4002830998506397,
+			0.10514440014958382,
+			1.2233971999958158,
+			4.14156370004639,
+			5.873573200078681,
+			0.11442770017310977,
+			2.8894661001395434,
+			0.11482689995318651,
+			1.1541341999545693,
+			4.289869500091299,
+			9.071356399916112,
+			0.1569201999809593,
+			0.32916319998912513,
+			1.0650889000389725,
+			0.03969879983924329,
+			3.0127574999351054,
+			1.5427605998702347,
+			0.6953300999011844,
+			6.246985299978405,
+			4.514994400087744,
+			0.05513649992644787,
+			0.0410558998119086,
+			14.384344100020826,
+			8.470375899923965,
+			0.17063599987886846,
+			4.156312100123614,
+			6.0851261001080275,
+			4.601381300017238,
+			4.311323500005528,
+			19.17707400000654,
+			0.18430830002762377,
+			14.383818299975246,
+			6.484104000031948,
+			6.040399499936029,
+			8.837678299983963,
+			0.21214560000225902,
+			0.603627499891445,
+			1.8981590999756008,
+			0.06749200006015599,
+			0.8701989999972284,
+			9.043120199814439,
+			0.33837169990874827,
+			2.134287200169638,
+			8.508412899915129,
+			1.8095321001019329,
+			3.7580298997927457,
+			2.0944503000937402,
+			6.60135000012815,
+			10.812381299911067,
+			0.24651309987530112,
+			15.073134599952027,
+			0.368856200017035,
+			3.1731704000849277,
+			0.6665046000853181,
+			3.5638264999724925,
+			4.308646299876273,
+			8.11102190008387,
+			5.627119399840012,
+			2.9655708000063896,
+			5.645506300032139,
+			7.21412290004082,
+			17.834107500035316,
+			6.546984100015834,
+			6.353204400045797,
+			1.303430600091815,
+			0.3750823999289423,
+			0.6659371999558061,
+			0.5503345001488924,
+			1.9703487998340279,
+			8.732237899908796,
+			17.05606980016455,
+			2.5041952999308705,
+			3.759875599993393,
+			3.6251591998152435,
+			0.9057690999470651,
+			0.3775222001131624,
+			23.48851569998078,
+			0.6659903000108898,
+			8.70947020011954,
+			0.41028820001520216,
+			0.26604770007543266,
+			21.26517689996399,
+			1.2673504000995308,
+			17.52260069991462,
+			12.175977900158614,
+			0.5022702000569552,
+			5.040907300077379,
+			13.905691900057718,
+			1.2342230998910964,
+			0.6087430000770837,
+			1.6756985001266003,
+			7.585897199809551,
+			0.22175060003064573,
+			4.281782299978659,
+			0.9515158000867814
+		]
+	},
+	{'totalTime': 441.4193596993573, 'times': [
+			1.4481145001482219,
+			2.232022900134325,
+			0.85555289988406,
+			0.590772399911657,
+			1.8750898998696357,
+			2.6666278999764472,
+			0.17373569984920323,
+			3.0413043999578804,
+			2.7805623998865485,
+			2.032951699802652,
+			0.5726145000662655,
+			1.2133885000366718,
+			0.11076830001547933,
+			0.41757500008679926,
+			4.045505500165746,
+			18.643800899852067,
+			1.333456400083378,
+			0.18139360006898642,
+			0.5557225998491049,
+			0.16541130002588034,
+			6.354816700099036,
+			1.7234418999869376,
+			2.705894700018689,
+			1.6615013999398798,
+			5.258375300094485,
+			1.400074299890548,
+			0.05273790005594492,
+			10.889332499820739,
+			7.55067089991644,
+			0.26475750003010035,
+			2.1165844998322427,
+			9.9368660999462,
+			5.479502799920738,
+			1.844186499947682,
+			26.132713899947703,
+			0.0828225000295788,
+			2.7533875999506563,
+			4.132817700039595,
+			15.475095700006932,
+			3.3262448001187295,
+			0.14733560010790825,
+			1.8801928998436779,
+			9.74267560010776,
+			0.05577990016900003,
+			5.275715800002217,
+			2.9005669001489878,
+			0.8320044002030045,
+			1.0859119999222457,
+			18.884661300107837,
+			4.9534588002134115,
+			0.9869544999673963,
+			0.9464967998210341,
+			10.431407700059935,
+			6.234471100149676,
+			0.1852410000283271,
+			18.840620100032538,
+			0.31042420002631843,
+			7.168058099923655,
+			0.2252909999806434,
+			1.111217699944973,
+			1.565985199995339,
+			4.418606100138277,
+			1.2370786999817938,
+			3.3504860000684857,
+			5.476780799916014,
+			3.288977599935606,
+			12.327181299915537,
+			3.4726503000129014,
+			16.895731899887323,
+			3.069565399782732,
+			0.8495484001468867,
+			0.6733270999975502,
+			2.3491940998937935,
+			3.911873900098726,
+			3.1007125000469387,
+			12.425913199782372,
+			1.2095568999648094,
+			3.129590099910274,
+			1.9387575997970998,
+			0.5784772001206875,
+			1.5489028999581933,
+			14.06333709997125,
+			0.4244868999812752,
+			5.250276899896562,
+			0.28553250012919307,
+			0.22335839993320405,
+			11.044886799994856,
+			3.8937013000249863,
+			25.90080439997837,
+			9.473887899890542,
+			2.6301630998495966,
+			2.6183095001615584,
+			15.493425900116563,
+			5.322957499884069,
+			1.0038313001859933,
+			1.0726882999297231,
+			1.5048569000791758,
+			0.5635794999543577,
+			6.242522400105372,
+			1.3111739999148995
+		]
+	},
+	{'totalTime': 324.8390154999215, 'times': [
+			1.9077618999872357,
+			2.1959208000916988,
+			0.9224984999746084,
+			0.7910038998816162,
+			2.38658279995434,
+			2.8734331999439746,
+			0.22306580003350973,
+			2.2214498999528587,
+			3.083299200050533,
+			2.8546245999168605,
+			0.5293411000166088,
+			1.8447199000511318,
+			0.17451440007425845,
+			0.7948594000190496,
+			3.473435599822551,
+			8.410396300023422,
+			1.0023363998625427,
+			0.33341490011662245,
+			0.9740508999675512,
+			0.17595469998195767,
+			4.031094999983907,
+			1.8318649001885206,
+			1.7360008999239653,
+			2.643697200110182,
+			4.155076799914241,
+			1.0991328000091016,
+			0.08335049985907972,
+			7.627270000055432,
+			6.051153100095689,
+			0.34758149995468557,
+			2.6156655000522733,
+			5.852229200070724,
+			4.321411600103602,
+			2.622916799969971,
+			12.920345099875703,
+			0.17463620007038116,
+			3.877981400117278,
+			4.156295999884605,
+			7.082481199875474,
+			3.612571399891749,
+			0.21387670002877712,
+			1.443498299922794,
+			3.875210100086406,
+			0.0776568001601845,
+			2.624949600081891,
+			3.9369193001184613,
+			0.7986673000268638,
+			1.498361499980092,
+			8.4185452000238,
+			3.0338463000953197,
+			1.677398000145331,
+			1.6577910999767482,
+			6.4089457001537085,
+			5.787412899779156,
+			0.35514959995634854,
+			10.787586600054055,
+			0.5025466999504715,
+			4.282969699939713,
+			0.42015199991874397,
+			1.968052300158888,
+			2.386404399992898,
+			4.427281799959019,
+			2.2969408999197185,
+			2.970099200028926,
+			4.615819700062275,
+			3.830404599895701,
+			9.01178209995851,
+			3.984297899994999,
+			7.9626901999581605,
+			2.3235881999135017,
+			0.8447827999480069,
+			1.0341823999769986,
+			1.6532653998583555,
+			3.0685735000297427,
+			4.726525099948049,
+			9.217810799833387,
+			1.990749099990353,
+			3.250557699939236,
+			2.6316565999295563,
+			0.9128265001345426,
+			1.22330559999682,
+			10.117380399955437,
+			0.7187696001492441,
+			5.417354099918157,
+			0.4852489000186324,
+			0.40113650006242096,
+			9.205054400023073,
+			2.5107364000286907,
+			12.676733299857005,
+			7.067338499939069,
+			1.6165029001422226,
+			2.9150434001348913,
+			9.20117889996618,
+			2.866353299934417,
+			1.0256335001904517,
+			1.622375600039959,
+			2.346281799953431,
+			0.580888899974525,
+			4.472573800012469,
+			1.4439298000652343
+		]
+	}
+]</code>
+			</div>
+			<br>
+			<div class="data_container">
+				<input type="checkbox">
+				<code>{
+	"tests": [
+		{"size": [13, 14], "request": 32}, 
+		{"size": [17, 17], "request": 37}, 
+		{"size": [3, 21], "request": 42}, 
+		{"size": [30, 4], "request": 30},
+		{"size": [9, 18], "request": 31}
+	], 
+	"results": [
+		{
+			"totalTime": 5.070249000098556,
+			"times": [0.7677182999905199, 0.913654699921608, 1.7547909000422806, 0.7753552999347448, 0.858729800209403]
+		},
+		{
+			"totalTime": 7.361030499683693,
+			"times": [1.5861605999525636, 2.426123899873346, 0.6785850999876857, 1.242209600051865, 1.4279512998182327]
+		},
+		{
+			"totalTime": 7.078712599817663,
+			"times": [1.49749660002999, 1.8370119999162853, 1.1708633999805897, 1.2902092998847365, 1.2831313000060618]
+		}
+	]
+}</code>
+			</div>
+
+			<br>
+
+			<h2 id="05_00_0">Multiprocessing test code and binary search/array benchmarking</h2>
+			<p>The solution so far works well, and the testing code works ok but it can be slow for lots of tests/solutions, so lets add multiprocessing, this will allow for the benchmarking code to run faster.</p>
+			<div class="data_container">
+				<input type="checkbox">
+				<code>[[0, 1824028.6583372], [0.00046440004371106625, 1824028.6588016], [84.07810569996946, 1824112.7364429], [98.91097670001909, 1824127.5693139], [98.91933800000697, 1824127.5776752]]</code>
+			</div>
+			<p>
+				These are timestamps at different points in the code from the timing array in main.py, normal testing took around 84 seconds whilst multithreaded took around 15 seconds. just under a 6x speed increase in this scenario. 
+					<br><br>
+				The multiprocessing works by running tests in parallel using the multiprocessing library. The solutions themselves are still run in parallel on different procceses.
+			</p>
+
+			<br>
+
+			<h3 id="05_01_0">Code</h3>
+
+			<p>Here is the updated code :</p>
+
+			<h4 id="05_01_1">Solutions</h4>
+			
+			<div class="code_container_colapsable">
+				<input type="checkbox" checked>
+				<p>solution_001.py</p>
+				<code>from random import randint
+
+# initial solution - random values
+def getRandomCells(gridSize: list[int], requestedCells: int) -> list[list[int]]:
+	totalCells = gridSize[0] * gridSize[1]
+
+	if requestedCells > totalCells:
+		raise ValueError(f"requestedCells({requestedCells}) cannot be greater than total number of cells ({totalCells})")
+	
+	returnCells = []
+	
+	# picks random new value, adding if unique, until enough are generated
+	while len(returnCells) < requestedCells:
+		newCoord = [randint(0, gridSize[0]-1), randint(0, gridSize[1]-1)]
+		
+		if newCoord in returnCells:
+			continue
+
+		returnCells.append(newCoord)
+		
+	#return returnCells</code>
+			</div>
+			<br>
+			<div class="code_container_colapsable">
+				<input type="checkbox" checked>
+				<p>solution_002.py</p>
+				<code>from random import choice
+from helperMethods import getAllCoords
+
+# second solution - array
+def getRandomCells(gridSize: list[int], requestedCells: int) -> list[list[int]]:
+	totalCells = gridSize[0] * gridSize[1]
+
+	if requestedCells > totalCells:
+		raise ValueError(f"numberOfPOIs ({requestedCells}) cannot be greater than total number of cells ({totalCells})")
+	
+	returnCells = []
+	remainingCells = getAllCoords(gridSize)
+	
+	# picks value from remainingCells, initally holds all coords, no posibilty for non-unique values to be picked
+	while len(returnCells) < requestedCells:
+		newCoord = choice(remainingCells)
+
+		returnCells.append(newCoord)
+		remainingCells.remove(newCoord)
+		
+	#return returnCells</code>
+			</div>
+			<br>
+			<div class="code_container_colapsable">
+				<input type="checkbox" checked>
+				<p>solution_003.py</p>
+				<code>from random import choice
+from helperMethods import binarySearchCoords, getAllCoords
+
+# third solution - array and binary search
+def getRandomCells(gridSize: list[int], requestedCells: int) -> list[list[int]]:
+	totalCells = gridSize[0] * gridSize[1]
+
+	if requestedCells > totalCells:
+		raise ValueError(f"numberOfPOIs ({requestedCells}) cannot be greater than total number of cells ({totalCells})")
+	
+	returnCells = []
+	remainingCells  = getAllCoords(gridSize)
+	
+	# picks value from remainingCells, initally holds all coords, no posibilty for non-unique values to be picked, uses binary search and .pop() to reduce time complexity compaired to .remove()
+	while len(returnCells) < requestedCells:
+		newCoord = choice(remainingCells)
+
+		returnCells.append(newCoord)
+
+		index = binarySearchCoords(newCoord, remainingCells)
+
+		remainingCells.pop(index)
+		
+	#return returnCells</code>
+			</div>
+			<br>
+
+			<h4 id="05_01_2">Benchmarking Code</h4>
+
+			<div class="code_container_colapsable">
+				<input type="checkbox" checked>
+				<p>main.py</p>
+				<code># SOLUTIONS
+import solutions.solution_001 as sol_01
+import solutions.solution_002 as sol_02
+import solutions.solution_003 as sol_03
+
+# IMPORTING OTHER SCRIPTS
+from tests import Tests
+from idManager import IDManager as idm
+
+# IMPORTING LIBRARIES
+import json
+from os import path, cpu_count
+import multiprocessing as mp
+import time
+
+# saves data as json
+def saveOutputAsJSON(data, name : str = "outputData"):
+	i = 0
+	thePath = 'output/{0}.json'.format(name)
+
+	# convits data(dictionary) to json as string which can be saved
+	dataAsJson = json.dumps(data)
+   
+	# loops till path which doesn't yet exist is found : prevents overriding pre-exising data
+	while path.exists(thePath):
+		i += 1
+		thePath = "output/{0}_{1}.json".format(name, i)
+
+	print(thePath)
+
+	try:
+		f = open(thePath, "x")
+		f.write(dataAsJson)
+		f.close()
+	except:
+		print("Something went wrong")
+
+
+
+# checks if on main proccess as so not to recursivly run it on every new proccess
+if __name__ == "__main__":
+	# below line is optional, only has effect on windows if complied to windows .exe
+	mp.freeze_support()
+
+	# timing list, used to see how long all tests took to run
+	timing = []
+	timing.append([0, time.perf_counter()])
+
+	# creates test object then generates tests (in this case 1000)
+	tests = Tests()
+	tests.genTests(2, 50, 0, 1000, 100)
+	
+	tmp = time.perf_counter()
+	timing.append([tmp - timing[0][1], tmp])
+
+	# sets up solutions dictonary to be passed to tests
+	solutions = [
+		{"id": "sol_01", "function": sol_01.getRandomCells},
+		{"id": "sol_02", "function": sol_02.getRandomCells},
+		{"id": "sol_03", "function": sol_03.getRandomCells}
+	]
+
+	print(tests)
+	print(cpu_count())
+
+	# runs tests and gets results
+	results1 = tests.runSolutions(solutions, repeat_count=100, updates=True)
+
+	tmp = time.perf_counter()
+	timing.append([tmp - timing[0][1], tmp])
+
+	results2 = tests.runSolutionsMultiprocessed(solutions, cpu_count(), repeat_count=100, updates=True)
+
+	tmp = time.perf_counter()
+	timing.append([tmp - timing[0][1], tmp])
+
+	# structures results into a dictionary
+	data = {
+		"dataFormatVersion" : 1.0,
+		"tests" : tests,
+		"results1" : results1,
+		"results2" : results2
+	}
+
+	print(data)
+
+	# saves the data dictionary as a json file
+	saveOutputAsJSON(data)
+
+	tmp = time.perf_counter()
+	timing.append([tmp - timing[0][1], tmp])
+
+	print(timing)</code>
+			</div>
+			<br>
+			<div class="code_container_colapsable">
+				<input type="checkbox" checked>
+				<p>tests.py</p>
+				<code>import timeit
+import random
+import multiprocessing as mp
+from idManager import IDManager as idm
+
+# Tests class, extends list and adds extra functionality but is primarily a list of dictonaries
+class Tests(list):
+	def __init_subclass__(cls):
+		return super().__init_subclass__()
+	
+	# Generate random tests here
+	def genTests(self, minGridSizeLen : int, maxGridSizeLen : int, minRequests : int, maxRequests : int, testNumb : int, replace : bool = False):
+		if replace:
+			self.clear()
+		
+		for i in range(0, testNumb):
+			# random grid size
+			test_gridSize = [
+				random.randint(minGridSizeLen, maxGridSizeLen),
+				random.randint(minGridSizeLen, maxGridSizeLen)
+			]
+			# random number of requests (capped at min of (maxRequests, number of cells in grid))
+			test_requests = random.randint(minRequests, min(maxRequests, test_gridSize[0]*test_gridSize[1]))
+
+			self.append({ 
+				"id" : "test_"+idm.getNewID(str),
+				"size" : test_gridSize,
+				"request" : test_requests,
+			})
+
+	# NORMAL
+
+	# Runs a the tests for multiple solutions
+	def runSolutions(self, solutions: list[dict], repeat_count : int = 10000, updates : bool = False) -> list[dict[int, list[float]]]:
+		results = []
+
+		for solution in solutions:
+			results.append(self.runOnSolution(solution, repeat_count, updates))
+
+			if updates:
+				print(solution)
+
+		return results
+
+	# Runs a the tests on a solution
+	def runOnSolution(self, solution : dict, repeat_count : int = 10000, updates : bool = False,) -> dict[int, list[float]]:
+		output = {
+			"solutionID" : solution["id"],
+			"totalTime" : 0,
+			"times" : {}
+		}
+
+		for test in self:
+			id, t = runSolutionOnTest(solution, test, repeat_count, updates)
+
+			# updates output dictionary
+			output["totalTime"] += t
+			output["times"][id] = t
+		
+		return output
+	
+	# MULTIPROCCESS
+	
+	# Runs tests on multiple solutions, each solution is multiproccessed
+	def runSolutionsMultiprocessed(self, solutions : list[dict], proccesses : int, repeat_count : int = 10000, updates : bool = False):
+		results = []
+
+		for solution in solutions:
+			results.append(self.runSolutionProccessesMultiprocessed(solution, proccesses, repeat_count, updates))
+
+			if updates:
+				print(solution)
+
+		return results
+	
+	# Distributes tests to diffrent proccesses and gets&structures results
+	def runSolutionProccessesMultiprocessed(self, solution : dict, proccesses : int, repeat_count : int = 10000, updates : bool = False):
+		with mp.Pool(proccesses) as p:
+			results = p.starmap(runSolutionOnTest, [(solution, test, repeat_count, True) for test in self])
+
+		if updates:
+			print(f"{solution['id']} - finished")
+
+		output = {
+			"solutionID" : solution["id"],
+			"totalTime" : sum(t for _, t in results),
+			"times" : {id : t for id, t in results}
+		}
+
+		if updates:
+			print(f"{solution['id']} - output generated")
+		
+		return output
+
+
+def runSolutionOnTest(solution : dict, test : dict, repeat_count : int, updates : bool = False):
+	# converts function to lambda expression
+	solution_wrapped = lambda: solution["function"](test["size"], test["request"])
+
+	# runs function and times it	
+	time_tmp = timeit.timeit(solution_wrapped, number=repeat_count)
+
+	if updates:
+		print(f"S {solution['id']} : T {test['id']}\nTest : {test}\nTime : {time_tmp}\n")
+
+	return (test["id"], time_tmp)</code>
+			</div>
+			<br>
+			<div class="code_container_colapsable">
+				<input type="checkbox" checked>
+				<p>helperMethods.py</p>
+				<code>from math import floor
+
+# takes in grid size and returns array of all the possible coords in the order of down then across (e.g. for [2,2] -> [[0, 0], [0, 1], [1, 0], [1, 1]])
+def getAllCoords(gridSize: list[int]) -> list[list[int]]:
+	returnCoords = []
+
+	for x in range(0,gridSize[0]):
+		for y in range(0, gridSize[1]):
+			returnCoords.append([x,y])
+	
+	return returnCoords
+
+
+# simple binary search, takes into account structure of getAllCoords() array, checks x coord then y
+def binarySearchCoords(coord : list[int], coordArray : list[list[int]]) -> int:
+	l_pointer = 0
+	r_pointer = len(coordArray) -1
+
+	while l_pointer <= r_pointer:
+		m_pointer = l_pointer + floor( (r_pointer - l_pointer) / 2)
+		if coordArray[m_pointer][0] < coord[0]:
+			l_pointer = m_pointer+1
+		elif coordArray[m_pointer][0] > coord[0]:
+			r_pointer = m_pointer-1
+		else:
+			if coordArray[m_pointer][1] < coord[1]:
+				l_pointer = m_pointer+1
+			elif coordArray[m_pointer][1] > coord[1]:
+				r_pointer = m_pointer-1
+			else:
+				return m_pointer></code>
+			</div>
+			<br>
+			<div class="code_container_colapsable">
+				<input type="checkbox" checked>
+				<p>idManager.py</p>
+				<code># this class is static and is just used to generate unique ids for anything that needs it
+class IDManager:
+    currentID = 0
+    
+    @classmethod
+    def getNewID(cls, type : type = str):
+        cls.currentID += 1
+        return type(cls.currentID)</code>
+			</div>
+			<br>
+			
+			<h4 id="05_01_3">Explanation</h4>
+
+			<p>
+				Here is an explanation of the updated code :
+					<br><br><br>
+				It starts in main.py, first it checks if the code being run is on the main process:
+			</p>
+			
+			<div class="code_container"><code>if __name__ == "__main__":</code></div>
+
+			<p>
+				It checks this in order to prevent new processes in a multi-processed test to run main when initiated and loading scripts.
+					<br><br>
+				It then sets up variables and the multiprocessing library for tests:
+			</p>
+
+			<div class="code_container"><code>mp.freeze_support()
+
+timing = []
+timing.append([0, time.perf_counter()])
+
+tests = Tests()
+tests.genTests(2, 50, 0, 1000, 100)
+
+tmp = time.perf_counter()
+timing.append([tmp - timing[0][1], tmp])
+
+solutions = [
+	{"id": "sol_01", "function": sol_01.getRandomCells},
+	{"id": "sol_02", "function": sol_02.getRandomCells},
+	{"id": "sol_03", "function": sol_03.getRandomCells}
+]</code></div>
+
+			<p>Note these lines :</p>
+
+			<div class="code_container"><code>tests = Tests()
+tests.genTests(2, 50, 0, 1000, 100)</code></div>
+
+			<p>This initializes an instance of the  generates a random set of tests which can be later run on the solutions.</p>
+
+			<div class="code_container"><code>class Tests(list):
+	def __init_subclass__(cls):
+		return super().__init_subclass__()
+	
+	# Generate random tests here
+	def genTests(self, minGridSizeLen : int, maxGridSizeLen : int, minRequests : int, maxRequests : int, testNumb : int, replace : bool = False):
+		if replace:
+			self.clear()
+		
+		for i in range(0, testNumb):
+			# random grid size
+			test_gridSize = [
+				random.randint(minGridSizeLen, maxGridSizeLen),
+				random.randint(minGridSizeLen, maxGridSizeLen)
+			]
+			# random number of requests (capped at min of (maxRequests, number of cells in grid))
+			test_requests = random.randint(minRequests, min(maxRequests, test_gridSize[0]*test_gridSize[1]))
+
+			self.append({ 
+				"id" : "test_"+idm.getNewID(str),
+				"size" : test_gridSize,
+				"request" : test_requests,
+			})</code></div>
+
+			<p>
+				Tests extends the list class, it adds functionality to run the elements in it as tests upon solutions passed to it. genTests() is a function it defines which takes in bounds for the types of tests you want and generates them.
+					<br><br>
+				Tests stores the tests as dictionaries in the format :
+			</p>
+
+			<div class="code_container"><code>{
+	"id" : "test_1",
+	"size" : [5, 19],
+	"request" : 34,
+}</code></div>
+
+			<p>
+				Note the values are randomized, see code for more details.
+					<br><br>
+				At this point we run the tests, there are multiple ways of doing it but here we will do both:
+			</p>
+
+			<div class="code_container"><code># runs tests and gets results
+results1 = tests.runSolutions(solutions, repeat_count=100, updates=True)
+
+tmp = time.perf_counter()
+timing.append([tmp - timing[0][1], tmp])
+
+results2 = tests.runSolutionsMultiprocessed(solutions, cpu_count(), repeat_count=100, updates=True)
+
+tmp = time.perf_counter()
+timing.append([tmp - timing[0][1], tmp])</code></div>
+
+			<p>
+				results1 stores the benchmark for tests run in series and results2 stores tests run with the multiprocessing approach.
+					<br><br>
+				First we will look at runSolutions()
+			</p>
+
+			<div class="code_container"><code>def runSolutionProccessesMultiprocessed(self, solution : dict, proccesses : int, queue : mp.Queue, repeat_count : int = 10000, updates : bool = False):
+	with mp.Pool(proccesses) as p:
+		results = p.starmap(runSolutionOnTest, [(solution, test, repeat_count, True) for test in self])
+
+	if updates:
+		print(f"{solution['id']} - finished")
+
+	output = {
+		"solutionID" : solution["id"],
+		"totalTime" : sum(t for _, t in results),
+		"times" : {id : t for id, t in results}
+	}
+
+	if updates:
+		print(f"{solution['id']} - output generated")
+	
+	return output</code></div>
+			<p>
+				runSolutionProccessesMultiprocessed() sets up proccessing pools and maps solution-tests tuples to the runSolutionOnTest() function on different proccesses, it then runs them all and gets the solution. It then does the same structuring as runOnSolution() and returns the results.
+					<br>
+				Now the tests have been run we can save the results.
+			</p>
+			<div class="code_container"><code># structures results into a dictionary
+data = {
+	"dataFormatVersion" : 1.0,
+	"tests" : tests,
+	"results1" : results1,
+	"results2" : results2
+}</code></div>
+			<p>We create a dictionary with all the tests, results and a id to tell us what type of formatting we are using, we do this so that when interpreting data it wont crash if we change how the results are formatted.</p>
+			<div class="code_container"><code>saveOutputAsJSON(data)</code></div>
+			<p>Finally we save the results as a JSON file.</p>
+			<div class="code_container"><code>def saveOutputAsJSON(data, name : str = "outputData"):
+	i = 0
+	thePath = 'output/{0}.json'.format(name)
+
+	# convits data(dictionary) to json as string which can be saved
+	dataAsJson = json.dumps(data)
+   
+	# loops till path which doesn't yet exist is found : prevents overriding pre-exising data
+	while path.exists(thePath):
+		i += 1
+		thePath = "output/{0}_{1}.json".format(name, i)
+
+	print(thePath)
+
+	try:
+		f = open(thePath, "x")
+		f.write(dataAsJson)
+		f.close()
+	except:
+		print("Something went wrong")</code></div>
+				<p>A valid path is found and then the dictionary is converted to a JSON, then the file is created, written to and saved.</p>
+
+				<br>
+				<h3 id="05_02_0">Benchmarking and testing</h3>
+				<p>Now lets use it. Here are some benchmarks :</p>
+				<br>
+				<h4 id="05_02_1">Series vs multiprocessing tests benchmarking</h4>
+				<p>First lets test the differences between series and multiprocessing benchmarking code.</p>
+				<br>
+				<p style="font-weight: bold; text-decoration: underline;">Test 1.1</p>
+				<p>This first test is to test for grid sizes/data points which may be used in a game and so these are reasonably small. This is to test the differences in performance between benchmarking code in the context of the initial problem.</p>
+				<div class="highlightBox">
+					<p>Settings</p>
+					<ul>
+						<li>Solutions : Only #3</li>
+						<li>Tests :<ul>
+							<li>Number of tests : 5000</li>
+							<li>Grid side lengths : min=2 : max=50</li>
+							<li>Number of data points : min=0 : max=1000</li>
+						</ul></li>
+						<li>Number of iterations per test : 100</li>
+					</ul>
+				</div>
+				<br>
+				<p>Running the tests yielded the below output data file :</p>
+				<div class="highlightBox">
+					<ul><li>Download : <a href="/media/projects/cantorParing/outputData_1.json" download>outputData-1.json</a></li></ul>
+				</div>
+				<div class="highlightBox">
+					<p>Analysis</p>
+					<ul>
+						<li>Elapsed time (time for all tests to run):<ul>
+							<li>Series : 294.13s</li>
+							<li>Parallel : 67.51s</li>
+						</ul></li>
+						<li>Cumulative time (sum of all execution times) : <ul>
+							<li>Series : 293.22s</li>
+							<li>Parallel: 930.42s</li>
+						</ul></li>
+						<li>Average time per execution (calculated as \(avg = t \div (100 * 5000)\))<ul>
+							<li>Series : 0.0005864s \(\approx \) 0.59ms</li>
+							<li>Multiprocessing : 0.001861s \(\approx \) 1.86ms</li>
+						</ul></li>
+					</ul>
+				</div>
+				<br>
+				<p>Elapsed timing data : </p>
+				<div class="data_container">
+					<input type="checkbox">
+					<code>[[0, 86111.4733381], [0.01036539999768138, 86111.4837035], [294.1368969000032, 86405.610235], [361.6589440000098, 86473.1322821], [361.73222160000296, 86473.2055597]]</code>
+				</div>
+				<img style="width: 100%;" src="/media/projects/cantorParing/Figure_1.png">
+				<img style="width: 100%;" src="/media/projects/cantorParing/Figure_1 1.png">
+				<p>
+					Above is 2 copies of the same graph one 2 different colored backgrounds. On the left is Series testing on the right is multiprocessor testing. The datapoints are assigned a color based on how long they take to run, white will be 0s and they become more blue the longer they take.
+						<br>
+					Looking at the graphs and data we can see that although per-execution time is higher for running tests in parallel, the elapsed time is less and it takes less time overall.
+				</p>
+
+				<br><br>
+				<p style="font-weight: bold; text-decoration: underline;">Test 1.2</p>
+				<p>This test is running the same settings as Test 1.1 but with all solutions to check for differences between solutions in the performance of the benchmarking code.</p>
+				<div class="highlightBox">
+					<p>Settings</p>
+					<ul>
+						<li>Solutions : #1 #2 #3</li>
+						<li>Tests :<ul>
+							<li>Number of tests : 5000</li>
+							<li>Grid side lengths : min=2 : max=50</li>
+							<li>Number of data points : min=0 : max=1000</li>
+						</ul></li>
+						<li>Number of iterations per test : 100</li>
+					</ul>
+				</div>
+				<br>
+				<p>Running the tests yielded the below output data file :</p>
+				<div class="highlightBox">
+					<ul><li>Download : <a href="/media/projects/cantorParing/outputData_2.json" download>outputData-2.json</a></li></ul>
+				</div>
+				<div class="highlightBox">
+					<p>Analysis</p>
+					<ul>
+						<li>Elapsed time (time for all tests to run):<ul>
+							<li>Series : 3982.78s</li>
+							<li>Parallel : 523.61s</li>
+						</ul></li>
+						<li>Cumulative time (sum of all execution times) & 
+Average time per execution (calculated as \(avg = t \div (100 * 5000)\))<ul>
+							<li>Series<ul>
+								<li>sol_01 : t=1863.1396221999748 : a=0.00372627924439995 \(\approx \) 3.73ms</li>
+								<li>sol_02 : t=1552.2547416999005 : a=0.0031045094833998007 \(\approx \) 3.10ms</li>
+								<li>sol_03 : t=563.2508035993524 : a=0.0011265016071987047 \(\approx \) 1.13ms</li>
+							</ul></li>
+							<li>Parallel<ul>
+								<li>sol_01 : t=3310.1234883997386 : a=0.006620246976799477 \(\approx \) 6.62ms</li>
+								<li>sol_02 : t=3274.833272000629 : a=0.006549666544001258 \(\approx \) 6.55ms</li>
+								<li>sol_03 : t=1034.881661399064 : a=0.0020697633227981277 \(\approx \) 2.07ms</li>
+							</ul></li>
+						</ul></li>
+					</ul>
+				</div>
+				<br>
+				<p>Elapsed timing data : </p>
+				<div class="data_container">
+					<input type="checkbox">
+					<code>[[0, 74741.6473384], [0.022567200008779764, 74741.6699056], [3982.7957494, 78724.4430878], [4506.431139699998, 79248.0784781], [4506.793591099995, 79248.4409295]]</code>
+				</div>
+				<img style="width: 100%;" src="/media/projects/cantorParing/Figure_1_2.png">
+				<img style="width: 100%;" src="/media/projects/cantorParing/Figure_1 2.png">
+				<p>
+					From the graphs and data we can see the elapsed time is less for the process using multiprocessing, showing it is the best way of running tests going forward.
+						<br>
+					The per-execution time seems to be about twice as long for parallel but the elapsed time seems so be around 1/4 - 1/8 th.
+				</p>
+				<br>
+				<h4 id="05_02_2">Solution comparisons</h4>
+				<br>
+				<p>
+					<b>Test 1.2 - More analysis under different context</b>
+						<br><br>
+					Looking back at this we can see both in series and parallel testing solution 1 and 2 are around the same with a small increase in efficiency for solution 2, but solution 3 is around 300% more efficient that the others.
+						<br><br>
+					We can see also from the graphs in which areas each algorithm performs the best: 
+				</p>
+				<ul>
+					<li>
+						Solution 1 works the best out of all the algorithms near the bottom of the graph where there is small grid sizes, however as the grid sizes increase the time takes increases much faster than the others.
+							<br> 
+						+ Number of requests makes little impact
+							<br>
+						- Larger grid sizes make a big impact
+					</li>
+					<li>
+						Solution 2 is takes less time on average and is not heavily influenced by grid size, however it does not deal well with large numbers of requests. It works best on the left.
+							<br> 
+						+ Grid size makes little impact
+							<br>
+						- Takes longer on average
+							<br>
+						- Number of requests makes a large impact
+					</li>
+					<li>
+						Solution 3 works well in both larger grid sizes and number of requests, it takes a lot less time overall and it a clear winner.
+							<br> 
+						+ Grid size makes little impact
+							<br>
+						+ Number of requests makes little impact
+					</li>
+				</ul>
+				<p>It is worth mentioning, the way the tests are generated means smaller grid sizes are more common, this means more values are closer to the left which in turns means smaller grid sizes/request numbers have a higher weighting on these benchmarking, looking at the graph can show us solution 2 seems to be a lot worse than shown in the stats, but 3 is still the best.</p>
+
+
+				<br><br>
+
+				<p>Thats all for now, I hope to add more soon.</p>
+		</main>
+	</div>
+</body>
